@@ -1,10 +1,12 @@
 import { useState } from "react";
 import "./EntrySideBar.scss";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 function EntrySideBar() {
   const [isIncome, setIsIncome] = useState(false);
   const [formResponse, setFormResponse] = useState({
-    date: "",
+    date: new Date(),
     amount: 0,
     currency: "CAD",
     category: "",
@@ -39,13 +41,29 @@ function EntrySideBar() {
 
       <form className="form">
         <div className="form__item">
-          <label>Date</label>
-          <input
+          <label htmlFor="date">Date</label>
+          <DatePicker
+            todayButton="TODAY"
+            showIcon
+            name="date"
+            id="date"
+            selected={formResponse.date}
+            onChange={(chosenDate) =>
+              setFormResponse((prevState) => {
+                return {
+                  ...prevState,
+                  date: chosenDate,
+                };
+              })
+            }
+          />
+          {/* <input
             id="date"
             name="date"
+            type="date"
             onChange={(e) => handleInputChange(e)}
             value={formResponse.date}
-          ></input>
+          ></input> */}
         </div>
         <div className="form__item">
           <label htmlFor="amount">Amount</label>
