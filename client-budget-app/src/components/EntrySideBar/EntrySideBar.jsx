@@ -2,21 +2,23 @@ import { useState } from "react";
 import "./EntrySideBar.scss";
 
 function EntrySideBar() {
-  const [toggled, setToggled] = useState(false);
+  const [isIncome, setIsIncome] = useState(false);
   const [formResponse, setFormResponse] = useState({
-    cost: 0,
-    category: "",
-    name: "",
     date: "",
+    amount: 0,
+    currency: "CAD",
+    category: "",
+    note: "",
     isTrip: false,
     tripName: "",
   });
 
   function handleInputChange(e) {
-    setFormResponse((prevFormResponse) => {
+    const { name, value, type, checked } = e.target;
+    setFormResponse((prevState) => {
       return {
-        ...prevFormResponse,
-        [e.target.name]: e.target.value,
+        ...prevState,
+        [name]: type === "checkbox" ? checked : value,
       };
     });
   }
@@ -27,8 +29,8 @@ function EntrySideBar() {
       <div>
         <p>Expense</p>
         <button
-          className={`toggle-btn ${toggled ? "toggled" : ""}`}
-          onClick={() => setToggled(!toggled)}
+          className={`toggle-btn ${isIncome ? "toggled" : ""}`}
+          onClick={() => setIsIncome((prev) => !prev)}
         >
           <div className="thumb"></div>
         </button>
@@ -37,13 +39,34 @@ function EntrySideBar() {
 
       <form className="form">
         <div className="form__item">
-          <label htmlFor="cost">Cost</label>
+          <label>Date</label>
           <input
-            id="cost"
-            name="cost"
+            id="date"
+            name="date"
             onChange={(e) => handleInputChange(e)}
-            value={formResponse.cost}
+            value={formResponse.date}
           ></input>
+        </div>
+        <div className="form__item">
+          <label htmlFor="amount">Amount</label>
+          <input
+            id="amount"
+            name="amount"
+            onChange={(e) => handleInputChange(e)}
+            value={formResponse.amount}
+          ></input>
+        </div>
+        <div className="form__item">
+          <label htmlFor="category">Currency</label>
+          <select
+            id="currency"
+            name="currency"
+            onChange={(e) => handleInputChange(e)}
+            value={formResponse.currency}
+          >
+            <option value="cad">CAD</option>
+            <option value="usd">USD</option>
+          </select>
         </div>
         <div className="form__item">
           <label htmlFor="category">Category</label>
@@ -53,44 +76,61 @@ function EntrySideBar() {
             onChange={(e) => handleInputChange(e)}
             value={formResponse.category}
           >
-            <option value=""> -- select an option -- </option>
-            <option value="groceries">Groceries</option>
-            <option value="rent">Rent</option>
+            {isIncome ? (
+              <>
+                <option value=""> -- select an option -- </option>
+                <option value="job">Job</option>
+              </>
+            ) : (
+              <>
+                <option value=""> -- select an option -- </option>
+                <option value="groceries">Groceries</option>
+                <option value="rent">Rent</option>
+              </>
+            )}
           </select>
         </div>
         <div className="form__item">
-          <label htmlFor="name">Name</label>
+          <label htmlFor="note">Note</label>
           <textarea
-            id="name"
-            name="name"
+            id="note"
+            name="note"
             onChange={(e) => handleInputChange(e)}
-            value={formResponse.name}
+            value={formResponse.note}
           ></textarea>
         </div>
-        <div className="form__item">
-          <label htmlFor="isTrip">Trip Expense?</label>
-          <input
-            type="checkbox"
-            id="isTrip"
-            name="isTrip"
-            onChange={(e) => handleInputChange(e)}
-            value={formResponse.isTrip}
-          ></input>
-        </div>
-
-        <div className="form__item">
-          <label htmlFor="tripName">Trip Name</label>
-          <select
-            id="tripName"
-            name="tripName"
-            onChange={(e) => handleInputChange(e)}
-            value={formResponse.tripName}
-          >
-            <option value=""> -- select an option -- </option>
-            <option value="groceries">Banff</option>
-            <option value="rent">Europe</option>
-          </select>
-        </div>
+        {!isIncome ? (
+          <>
+            <div className="form__item">
+              <label htmlFor="isTrip">Trip Expense?</label>
+              <input
+                type="checkbox"
+                id="isTrip"
+                name="isTrip"
+                onChange={(e) => handleInputChange(e)}
+                checked={formResponse.isTrip}
+              ></input>
+            </div>
+            {formResponse.isTrip && (
+              <div className="form__item">
+                <label htmlFor="tripName">Trip Name</label>
+                <select
+                  id="tripName"
+                  name="tripName"
+                  onChange={(e) => handleInputChange(e)}
+                  value={formResponse.tripName}
+                >
+                  <option value=""> -- select an option -- </option>
+                  <option value="groceries">Banff</option>
+                  <option value="rent">Europe</option>
+                </select>
+              </div>
+            )}{" "}
+          </>
+        ) : (
+          <></>
+        )}
+        <button>Submit</button>
       </form>
     </aside>
   );
