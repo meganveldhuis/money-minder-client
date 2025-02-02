@@ -57,13 +57,6 @@ function EntrySideBar() {
               })
             }
           />
-          {/* <input
-            id="date"
-            name="date"
-            type="date"
-            onChange={(e) => handleInputChange(e)}
-            value={formResponse.date}
-          ></input> */}
         </div>
         <div className="form__item">
           <label htmlFor="amount">Amount</label>
