@@ -1,3 +1,4 @@
+import "./styles/partials/_global.scss";
 import "./App.css";
 
 function App() {
@@ -5,6 +6,9 @@ function App() {
     <>
       <h1>MoneyMinder</h1>
       <h2>By Megan</h2>
+      <h3>H3</h3>
+      <h4>H4</h4>
+      <p>Paragraph</p>
     </>
   );
 }
