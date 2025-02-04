@@ -1,0 +1,17 @@
+.navbar {
+  width: 100%;
+  align-self: flex-end;
+  background-color: green;
+  &__list {
+    // width: 100%;
+    display: flex;
+    // flex-wrap: wrap;
+    // margin: 20 0px;
+    // padding: 0 25px;
+    // align-items: flex-end;
+    // justify-content: right;
+  }
+  &__item {
+    // padding-right: 10px;
+  }
+}
