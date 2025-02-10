@@ -6,17 +6,11 @@ What is your app? Give a brief description in a couple of sentences.
 
 ### Problem Space
 
-Why is your app needed? Give any background information around any pain points or other reasons.
-
 I've never found a budget app or spreadsheet that is perfect. I want the option to add expenses offline, have separate trip expenses, and currencies.
 
 ### User Profile
 
-- Anyone who's looking for a place to budget and track cash.
-- My app will include different users so that if we share a database, they can only see their data.
-  <!-- TODO: idrk how multiple users will work cause they shouldnt all be on my SQL database cause then i can see it...  -->
-  <!-- TODO: Maybe this is a stretch goal instead... -->
-  Who will use your app? How will they use it? Add any special considerations that your app must take into account.
+- Users who are looking for a place to budget and track cash.
 
 ### Features
 
@@ -42,11 +36,16 @@ List the functionality that your app will include. These can be written as user 
 
 ### APIs
 
-List any external sources of data that will be used in your app.
+No external APIs are used.
 
 ### Sitemap
 
-List the pages of your app with brief descriptions. You can show this visually, or write it out.
+- _Overview/Summary Page_ : This page will have some different representations of the data. It will include a PI Chart, table, info cards, etc. Anything that gives an idea of budgeting progress at a glance.
+- _Add Entry Page_ : This will be a page or sidebar with a form to input either an Income or an Expense line.
+- _Expenses Page_ : Table of all expense items. Filters at the top for year, month, category, etc.
+- _Income Page_ : Table of all income items. Filters at the top for year, month, category, etc.
+- _Budget Page_ : View and edit all budget items
+- _Settings Page_: Page to put the ugly stuff: to download data to csv file, dark/light themes, editing or adding categories, etc.
 
 ### Mockups
 
@@ -58,14 +57,64 @@ Provide visuals of your app's screens. You can use pictures of hand-drawn sketch
 
 ### Endpoints
 
-List endpoints that your server will implement, including HTTP methods, parameters, and example responses.
+1. Expenses Routes (`http:localhost:8080/expense`)
+
+- `get` all expense records
+- `get` expense by id
+- `post` new expense record
+- `patch` edit expense record
+- `delete` expense record
+
+2. Income Routes (`http:localhost:8080/income`)
+
+- `get` all income records
+- `get` income by id
+- `post` new income record
+- `patch` edit income record
+- `delete` income record
+
+3. Categories Routes (`http:localhost:8080/category`)
+
+- `get` all Expense categories
+- `get` all Income categories
+- `get` category by id
+- `post` new category
+- `delete` category
+
+4. Budget Routes (`http:localhost:8080/budget`)
+
+- `get` all budget lines
+- `post` new budget line
+- `patch` edit budget line
+- `delete` budget line
+
+5. Currency Routes (`http:localhost:8080/currency`)
+
+- `get` all currency codes
+
+6. Trips Routes
 
 ## Roadmap
 
 Scope your project as a sprint. Break down the tasks that will need to be completed and map out timeframes for implementation working back from the capstone due date.
 
+### Back-End
+
+- [ ] set up all tables
+- seed initial data
+- set up all base routes/endpoints
+- test they all work as expected
+-
+
+### Front-End
+
+### Testing
+
 ---
 
 ## Future Implementations
 
-Your project will be marked based on what you committed to in the above document. Here, you can list any additional features you may complete after the MVP of your application is built, or if you have extra time before the Capstone due date.
+- Login / Multiple users
+- Option to upload data
+- Trips
+- Currency
