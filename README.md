@@ -96,19 +96,45 @@ Provide visuals of your app's screens. You can use pictures of hand-drawn sketch
 
 ## Roadmap
 
-Scope your project as a sprint. Break down the tasks that will need to be completed and map out timeframes for implementation working back from the capstone due date.
-
 ### Back-End
 
+_Goal: done by Feb 14th_
+
 - [ ] set up all tables
-- seed initial data
-- set up all base routes/endpoints
-- test they all work as expected
--
+- [ ] seed initial data
+- [ ] set up all base routes/endpoints
+- [ ] test they all work as expected
 
 ### Front-End
 
+(MVP)
+
+- [ ] Functionality: _Goal: done by Feb 18th_
+  - [ ] Summary/Overview Page
+  - [ ] Income Page
+  - [ ] Expense Page
+  - [ ] Add Entry Page/SideBar
+- [ ] Styling: _Goal: done by Saturday Feb 20th_
+  - [ ] Summary/Overview Page
+  - [ ] Income Page
+  - [ ] Expense Page
+  - [ ] Add Entry Page/SideBar
+
 ### Testing
+
+_Goal: done by Sunday Feb 23th_
+
+- [ ] Test all pages, endpoints, situations
+
+### Add Other Features
+
+- [ ] Budget Page
+  - [ ] add / edit budget item
+  - [ ] change overview/summary to reflect progress vs the budget
+- [ ] Schedule monthly payments
+- [ ] Icons for categories
+- [ ] Animations
+- [ ] Component Reusability
 
 ---
 
