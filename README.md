@@ -92,7 +92,7 @@ No external APIs are used.
 
 ### Endpoints
 
-1. Expenses Routes (`http:localhost:8080/expense`)
+1. Expenses Routes (`http:localhost:8080/api/expense`)
 
 - `get` all expense records
 - `get` expense by id
@@ -100,7 +100,7 @@ No external APIs are used.
 - `patch` edit expense record
 - `delete` expense record
 
-2. Income Routes (`http:localhost:8080/income`)
+2. Income Routes (`http:localhost:8080/api/income`)
 
 - `get` all income records
 - `get` income by id
@@ -108,7 +108,7 @@ No external APIs are used.
 - `patch` edit income record
 - `delete` income record
 
-3. Categories Routes (`http:localhost:8080/category`)
+3. Categories Routes (`http:localhost:8080/api/category`)
 
 - `get` all Expense categories
 - `get` all Income categories
@@ -116,14 +116,14 @@ No external APIs are used.
 - `post` new category
 - `delete` category
 
-4. Budget Routes (`http:localhost:8080/budget`)
+4. Budget Routes (`http:localhost:8080/api/budget`)
 
 - `get` all budget lines
 - `post` new budget line
 - `patch` edit budget line
 - `delete` budget line
 
-5. Currency Routes (`http:localhost:8080/currency`)
+5. Currency Routes (`http:localhost:8080/api/currency`)
 
 - `get` all currency codes
 
@@ -145,6 +145,7 @@ _Goal: done by Feb 14th_
 (MVP)
 
 - [ ] Functionality: _Goal: done by Feb 18th_
+  - [x] API service class
   - [ ] Summary/Overview Page
   - [ ] Income Page
   - [ ] Expense Page
