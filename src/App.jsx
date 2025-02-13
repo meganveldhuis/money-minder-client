@@ -1,4 +1,5 @@
 import "./styles/partials/_global.scss";
+import EntrySideBar from "./components/EntrySideBar/EntrySideBar";
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
       <h3>H3</h3>
       <h4>H4</h4>
       <p>Paragraph</p>
+      <EntrySideBar />
     </>
   );
 }
