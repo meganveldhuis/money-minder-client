@@ -1,5 +1,20 @@
 # Budget App
 
+<!--
+QUESTION:
+
+- is it okay practice on the back-end to use a different route/endpoint to get info?
+  (re: validate category id exists)
+
+  - yes! can use a utils folder
+
+- is it best practice to use IDs or names when referencing a different table in a request body?
+
+  - IDs is good
+
+- if i make a class on frontend for API service, is it best to have then three try/catch blocks?
+  - just two is good -->
+
 ## Overview
 
 What is your app? Give a brief description in a couple of sentences.
@@ -45,15 +60,34 @@ No external APIs are used.
 - _Expenses Page_ : Table of all expense items. Filters at the top for year, month, category, etc.
 - _Income Page_ : Table of all income items. Filters at the top for year, month, category, etc.
 - _Budget Page_ : View and edit all budget items
+- _Record Information Page_ : after clicking on an expense or income line, this page will open up with more info and the option to edit the record
 - _Settings Page_: Page to put the ugly stuff: to download data to csv file, dark/light themes, editing or adding categories, etc.
 
 ### Mockups
 
-Provide visuals of your app's screens. You can use pictures of hand-drawn sketches, or wireframing tools like Figma.
+#### Summary Page:
+
+![mockup of summary page on mobile](./src/assets/images/mockup/mockup-mobile-summary.png)
+
+#### Expenses Page:
+
+![mockup of expenses page on mobile](./src/assets/images/mockup/mockup-mobile-expenses.png)
+
+#### Income Page:
+
+![mockup of income page on mobile](./src/assets/images/mockup/mockup-mobile-income.png)
+
+#### Budget Page:
+
+![mockup of budget page on mobile](./src/assets/images/mockup/mockup-mobile-budget.png)
+
+#### New Entry Page:
+
+![mockup of new entry page on mobile](./src/assets/images/mockup/mockup-mobile-entry.png)
 
 ### Data
 
-![Diagram showing the SQL tables and their relationships](sql-diagram.png)
+![Diagram showing the SQL tables and their relationships](sql-diagram-no-user.png)
 
 ### Endpoints
 
@@ -100,8 +134,8 @@ Provide visuals of your app's screens. You can use pictures of hand-drawn sketch
 
 _Goal: done by Feb 14th_
 
-- [ ] set up all tables
-- [ ] seed initial data
+- [x] set up all tables
+- [x] seed initial data
 - [ ] set up all base routes/endpoints
 - [ ] test they all work as expected
 
@@ -142,5 +176,5 @@ _Goal: done by Sunday Feb 23th_
 
 - Login / Multiple users
 - Option to upload data
-- Trips
-- Currency
+- Trips Tab / Separate expenses and budget
+- Build out Currency (currently will just have default and only option as CAD)
