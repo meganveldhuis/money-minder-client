@@ -83,7 +83,8 @@ No external APIs are used.
 
 #### New Entry Page:
 
-![mockup of new entry page on mobile](./src/assets/images/mockup/mockup-mobile-entry.png)
+![mockup of new expense entry page on mobile](./src/assets/images/mockup/mockup-mobile-expense-entry.png)
+![mockup of new income entry on mobile](./src/assets/images/mockup/mockup-mobile-income-entry.png)
 
 ### Data
 
