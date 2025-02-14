@@ -2,10 +2,12 @@
 @use "../../styles/partials/variables" as *;
 .navbar {
   width: 65vw;
-  height: 100vh;
   background-color: none;
   &--open {
     background-color: $color-dark-orange;
+    height: 100vh;
+    z-index: 10;
+    position: fixed;
   }
   @include tablet {
     background-color: $color-dark-orange;
@@ -22,6 +24,8 @@
     padding: 0 25px;
     &--open {
       display: inline;
+      z-index: 8;
+      width: 65vw;
     }
 
     @include tablet {
