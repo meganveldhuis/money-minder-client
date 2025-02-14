@@ -2,7 +2,7 @@ import axios from "axios";
 
 class APIService {
   constructor() {
-    this.baseURL = import.meta.env.VITE_URL;
+    this.baseURL = import.meta.env.VITE_API_URL;
   }
   /* -------------------------------- EXPENSES -------------------------------- */
   async getAllExpenses(searchTerm) {
@@ -98,6 +98,14 @@ class APIService {
     }
   }
   /* ------------------------------- CATEGORIES ------------------------------- */
+  async getAllCategories() {
+    try {
+      const response = await axios.get(`${this.baseURL}/`);
+      return response.data;
+    } catch (error) {
+      console.log(`Error: Could not get all Categories`);
+    }
+  }
   async getAllIncomeCategories() {
     try {
       const response = await axios.get(`${this.baseURL}/categories/income`);
@@ -123,3 +131,5 @@ class APIService {
     }
   }
 }
+
+export default new APIService();
