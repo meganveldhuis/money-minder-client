@@ -13,27 +13,35 @@ function Navbar() {
       <div className="navbar__hamburger" onClick={toggleHamburger}>
         <Hamburger hamburgerOpen={hamburgerOpen} />
       </div>
-      {/* <div className={`navbar ${hamburgerOpen ? "navbar--open" : ""}`}> */}
       <ul
         className={`navbar__list ${hamburgerOpen ? "navbar__list--open" : ""}`}
       >
         <li className={`navbar__item`}>
-          <Link to={`/`}>Summary</Link>
+          <Link to={`/`}>
+            <p className="navbar__text">Summary</p>
+          </Link>
         </li>
         <li className={`navbar__item`}>
-          <Link to={`/new`}>+ Add New Entry</Link>
+          <Link to={`/new`}>
+            <p className="navbar__text">+ Add New Entry</p>
+          </Link>
         </li>
         <li className={`navbar__item`}>
-          <Link to={`/expenses`}>Expenses</Link>
+          <Link to={`/expenses`}>
+            <p className="navbar__text">Expenses</p>
+          </Link>
         </li>
         <li className={`navbar__item`}>
-          <Link to={`/income`}>Income</Link>
+          <Link to={`/income`}>
+            <p className="navbar__text">Income</p>
+          </Link>
         </li>
         <li className={`navbar__item`}>
-          <Link to={`/budget`}>Budget</Link>
+          <Link to={`/budget`}>
+            <p className="navbar__text">Budget</p>
+          </Link>
         </li>
       </ul>
-      {/* </div> */}
     </nav>
   );
 }
