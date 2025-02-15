@@ -11,7 +11,7 @@ function ExpensesPage() {
         <div className="expenses__table-titles">
           <h4 className="expenses__titles">Date</h4>
           <h4 className="expenses__titles">Name</h4>
-          <h4 className="expenses__titles">Amount</h4>
+          <h4 className="expenses__titles expenses__titles--small">$</h4>
           <h4 className="expenses__titles">Category</h4>
         </div>
       </div>
