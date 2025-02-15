@@ -5,7 +5,7 @@ class APIService {
     this.baseURL = import.meta.env.VITE_API_URL;
   }
   /* -------------------------------- EXPENSES -------------------------------- */
-  async getAllExpenses(searchTerm) {
+  async getAllExpenses(searchTerm = "") {
     try {
       const response = await axios.get(
         `${this.baseURL}/expense?search=${searchTerm}`
@@ -128,6 +128,15 @@ class APIService {
       return response.data;
     } catch (error) {
       console.log(`Error: Could not get Category with id ${id}`);
+    }
+  }
+  /* ---------------------------------- DATES --------------------------------- */
+  async getAllYears() {
+    try {
+      const response = await axios.get(`${this.baseURL}/date/years`);
+      return response.data;
+    } catch (error) {
+      console.log(`Error: Could not get all years`);
     }
   }
 }
