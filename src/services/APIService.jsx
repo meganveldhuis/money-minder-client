@@ -5,10 +5,18 @@ class APIService {
     this.baseURL = import.meta.env.VITE_API_URL;
   }
   /* -------------------------------- EXPENSES -------------------------------- */
-  async getAllExpenses(searchTerm = "") {
+  async getAllExpenses(
+    searchTerm = "",
+    yearFilter = "",
+    monthFilter = "",
+    categoryFilter = ""
+  ) {
     try {
       const response = await axios.get(
-        `${this.baseURL}/expense?search=${searchTerm}`
+        `${this.baseURL}/expense?search=${searchTerm}&year=${yearFilter}&month=${monthFilter}&category=${categoryFilter}`
+      );
+      console.log(
+        `${this.baseURL}/expense?search=${searchTerm}&year=${yearFilter}&month=${monthFilter}&category=${categoryFilter}`
       );
       return response.data;
     } catch (error) {
