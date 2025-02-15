@@ -28,25 +28,25 @@ button {
 }
 /*
  * MOBILE
- * h1 = 1.3 * p = 19.5px = 1.95rem
- * h2 = 1.2 * p = 18px = 1.8rem
- * h3 = 1.1 * p = 16.5px = 1.65rem
+ * h1 = 1.3 * p = 19.5px = 1.219rem
+ * h2 = 1.2 * p = 18px = 1.125rem
+ * h3 = 1.1 * p = 16.5px = 1.031rem
  * h4 = p, italics
- * p = 14px - 16px = 15px = 1.5rem
+ * p = 14px - 16px = 15px = 0.938rem
  * 
  * TABLET 
- * h1 = 1.6 * p = 25.6px = 2.56rem
- * h2 = 1.4 * p = 22.4px = 2.24rem
- * h3 = 1.2 * p = 19.2px = 1.92rem
+ * h1 = 1.6 * p = 25.6px = 1.6rem
+ * h2 = 1.4 * p = 22.4px = 1.4rem
+ * h3 = 1.2 * p = 19.2px = 1.2rem
  * h4 = p, italics
- * p = 16px = 1.6rem
+ * p = 16px = 1rem
  * 
  * DESKTOP
- * h1 = 1.96 * p = 33.32px = 3.332rem
- * h2 = 1.65 * p = 28.05px = 2.805rem
- * h3 = 1.35 * p = 22.95px = 2.295rem
+ * h1 = 1.96 * p = 33.32px = 2.083rem
+ * h2 = 1.65 * p = 28.05px = 1.753rem
+ * h3 = 1.35 * p = 22.95px = 1.434rem
  * h4 = p, italics
- * p = 16px - 18px = 17px = 1.7rem
+ * p = 16px - 18px = 17px = 1.434rem
 */
 body,
 input,
@@ -54,19 +54,19 @@ textarea,
 select,
 label,
 p {
-  font-size: 1.5rem;
+  font-size: 0.938rem;
 }
 h1 {
-  font-size: 1.95rem;
+  font-size: 1.219rem;
 }
 h2 {
-  font-size: 1.8rem;
+  font-size: 1.125rem;
 }
 h3 {
-  font-size: 1.65rem;
+  font-size: 1.031rem;
 }
 h4 {
-  font-size: 1.5rem;
+  font-size: 0.938rem;
   font-weight: 200;
   font-style: italic;
 }
@@ -76,19 +76,19 @@ h4 {
   textarea,
   select,
   p {
-    font-size: 1.6rem;
+    font-size: 1rem;
   }
   h1 {
-    font-size: 2.56rem;
+    font-size: 1.6rem;
   }
   h2 {
-    font-size: 2.24rem;
+    font-size: 1.4rem;
   }
   h3 {
-    font-size: 1.92rem;
+    font-size: 1.2rem;
   }
   h4 {
-    font-size: 1.6rem;
+    font-size: 1rem;
     font-weight: 200;
     font-style: italic;
   }
@@ -99,19 +99,19 @@ h4 {
   textarea,
   select,
   p {
-    font-size: 1.7rem;
+    font-size: 1.434rem;
   }
   h1 {
-    font-size: 3.332rem;
+    font-size: 2.083rem;
   }
   h2 {
-    font-size: 2.805rem;
+    font-size: 1.753rem;
   }
   h3 {
-    font-size: 2.295rem;
+    font-size: 1.434rem;
   }
   h4 {
-    font-size: 1.7rem;
+    font-size: 1.434rem;
     font-weight: 200;
     font-style: italic;
   }
