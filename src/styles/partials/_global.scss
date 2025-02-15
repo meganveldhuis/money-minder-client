@@ -7,10 +7,18 @@ html {
   background-color: $color-dark-blue;
   color: $color-text;
 }
-* {
+*,
+*::before,
+*::after {
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
+  font: "Roboto-Condensed";
+}
+body,
+textarea,
+* {
+  font-family: $font-family-primary;
 }
 ul {
   list-style-type: none;
@@ -75,6 +83,7 @@ p {
 }
 h1 {
   font-size: 1.219rem;
+  font-weight: $font-weight-bold;
 }
 h2 {
   font-size: 1.125rem;
