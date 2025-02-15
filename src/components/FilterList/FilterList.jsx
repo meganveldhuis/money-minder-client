@@ -1,8 +1,25 @@
+import "./FilterList.scss";
 import { useEffect, useState } from "react";
 import APIService from "../../services/APIService.jsx";
 
 function FilterList({ isAll, isIncome }) {
   const [categories, setCategories] = useState([]);
+  const [years, setYears] = useState([]);
+  const monthNames = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
   useEffect(() => {
     async function getCategories() {
       let data;
@@ -14,33 +31,45 @@ function FilterList({ isAll, isIncome }) {
         data = await APIService.getAllExpenseCategories();
       }
       if (data) {
-        console.log("data: ", data);
-        data.forEach((item) => {
-          console.log(item);
-        });
         setCategories(data);
       }
     }
+
+    async function getYears() {
+      const data = await APIService.getAllYears();
+      setYears(data);
+    }
+
     getCategories();
+    getYears();
   }, []);
 
   return (
     <>
-      <form className="filters">
+      <form className="filter">
         <div className="filter__item">
           <label htmlFor="yearFilter">Filter by Year</label>
-          <select id="yearFilter" name="yearFilter">
-            <option value={2025}>2025</option>
-            <option value={2024}>2024</option>
-            <option value={2023}>2023</option>
-          </select>
+          {years ? (
+            <select id="yearFilter" name="yearFilter">
+              {years.map((year) => (
+                <option key={year} value={year}>
+                  {year}
+                </option>
+              ))}
+            </select>
+          ) : (
+            <></>
+          )}
         </div>
+
         <div className="filter__item">
           <label htmlFor="monthFilter">Filter by Month</label>
           <select id="monthFilter" name="monthFilter">
-            <option value={"feb"}>feb</option>
-            <option value={2024}>2024</option>
-            <option value={2023}>2023</option>
+            {monthNames.map((month, index) => (
+              <option key={index} value={index + 1}>
+                {month}
+              </option>
+            ))}
           </select>
         </div>
 
@@ -49,7 +78,9 @@ function FilterList({ isAll, isIncome }) {
           {categories ? (
             <select id="categoryFilter" name="categoryFilter">
               {categories.map((category) => (
-                <option value={category.id}>{category.category_name}</option>
+                <option key={category.id} value={category.id}>
+                  {category.category_name}
+                </option>
               ))}
             </select>
           ) : (

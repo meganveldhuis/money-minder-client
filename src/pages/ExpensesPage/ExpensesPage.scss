@@ -1,2 +1,16 @@
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/variables" as *;
+.expenses-page {
+}
+
+.expenses {
+  &__header {
+  }
+  &__table-titles {
+    display: flex;
+    justify-content: space-between;
+  }
+  &__titles {
+    flex: 1;
+  }
+}
