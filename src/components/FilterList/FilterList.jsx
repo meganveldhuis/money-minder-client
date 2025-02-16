@@ -91,7 +91,9 @@ function FilterList({ isAll, isIncome, setFilters, filters }) {
             <label htmlFor="yearFilter">Filter by Year</label>
             {years ? (
               <select
-                className="filter__select"
+                className={`filter__select ${
+                  filters.yearFilter ? "filter__select--selected" : ""
+                }`}
                 id="yearFilter"
                 name="yearFilter"
                 value={filters.yearFilter}
@@ -114,7 +116,9 @@ function FilterList({ isAll, isIncome, setFilters, filters }) {
           <div className="filter__item">
             <label htmlFor="monthFilter">Filter by Month</label>
             <select
-              className="filter__select"
+              className={`filter__select ${
+                filters.monthFilter ? "filter__select--selected" : ""
+              }`}
               id="monthFilter"
               name="monthFilter"
               value={filters.monthFilter}
@@ -132,7 +136,9 @@ function FilterList({ isAll, isIncome, setFilters, filters }) {
             <label htmlFor="categoryFilter">Filter by Category</label>
             {categories ? (
               <select
-                className="filter__select"
+                className={`filter__select ${
+                  filters.categoryFilter ? "filter__select--selected" : ""
+                }`}
                 id="categoryFilter"
                 name="categoryFilter"
                 value={filters.categoryFilter}
@@ -157,7 +163,9 @@ function FilterList({ isAll, isIncome, setFilters, filters }) {
             <input
               type="text"
               name="search"
-              className="filter__searchbar"
+              className={`filter__searchbar ${
+                filters.search ? "filter__searchbar--selected" : ""
+              }`}
               placeholder="Search..."
               value={filters.search}
               onChange={(e) => handleFilterSelect(e)}

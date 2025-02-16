@@ -43,6 +43,15 @@
     height: 2rem;
     min-width: 4.4rem;
     padding: 0.3rem;
+    cursor: pointer;
+    &:hover {
+      filter: invert(20%);
+      background-color: rgba($color-dark-purple, 0.8);
+      transition: ease-in 0.2s;
+    }
+    &--selected {
+      background-color: rgba($color-dark-purple, 0.8);
+    }
   }
   &__searchbar {
     width: 100%;
@@ -56,5 +65,9 @@
   }
   &__cancel {
     padding: 0 1rem;
+    cursor: pointer;
+    &:hover {
+      filter: invert(20%);
+    }
   }
 }
