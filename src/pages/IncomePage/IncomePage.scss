@@ -1,0 +1,25 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+.income-page {
+}
+
+.income {
+  &__header {
+  }
+  &__main-title {
+    padding: 1rem 0;
+  }
+  &__table-titles {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1rem;
+    border-bottom: 1px solid white;
+    margin: 0.5rem 0;
+  }
+  &__titles {
+    flex: 2;
+    &--small {
+      flex: 1;
+    }
+  }
+}

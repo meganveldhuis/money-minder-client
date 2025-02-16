@@ -50,7 +50,10 @@ function FilterList({ isAll, isIncome, setFilters, filters }) {
   function handleFilterSelect(e) {
     const { name, value } = e.target;
     //if we have only changed the month filter, set year to default to the current year (for better UX)
-    if (filters.yearFilter === "0" && name === "monthFilter") {
+    if (
+      name === "monthFilter" &&
+      (filters.yearFilter === "0" || filters.yearFilter === "")
+    ) {
       setFilters((prevState) => {
         return {
           ...prevState,
@@ -92,7 +95,9 @@ function FilterList({ isAll, isIncome, setFilters, filters }) {
             {years ? (
               <select
                 className={`filter__select ${
-                  filters.yearFilter ? "filter__select--selected" : ""
+                  filters.yearFilter && filters.yearFilter !== "0"
+                    ? "filter__select--selected"
+                    : ""
                 }`}
                 id="yearFilter"
                 name="yearFilter"

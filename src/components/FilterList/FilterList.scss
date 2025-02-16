@@ -45,7 +45,6 @@
     padding: 0.3rem;
     cursor: pointer;
     &:hover {
-      filter: invert(20%);
       background-color: rgba($color-dark-purple, 0.8);
       transition: ease-in 0.2s;
     }
