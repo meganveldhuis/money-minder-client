@@ -49,6 +49,23 @@ function FilterList({ isAll, isIncome, setFilters, filters }) {
 
   function handleFilterSelect(e) {
     const { name, value } = e.target;
+    //if we have only changed the month filter, set year to default to the current year (for better UX)
+    if (filters.yearFilter === "0" && name === "monthFilter") {
+      setFilters((prevState) => {
+        return {
+          ...prevState,
+          yearFilter: new Date().getFullYear(),
+        };
+      });
+    }
+    if (name === "yearFilter" && value === "0") {
+      setFilters((prevState) => {
+        return {
+          ...prevState,
+          monthFilter: "",
+        };
+      });
+    }
     setFilters((prevState) => {
       return {
         ...prevState,
@@ -58,7 +75,6 @@ function FilterList({ isAll, isIncome, setFilters, filters }) {
   }
 
   function handleCancel(e) {
-    console.log("called cancel");
     setFilters({
       yearFilter: "",
       monthFilter: "",

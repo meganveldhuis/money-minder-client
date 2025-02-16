@@ -15,9 +15,6 @@ class APIService {
       const response = await axios.get(
         `${this.baseURL}/expense?search=${searchTerm}&year=${yearFilter}&month=${monthFilter}&category=${categoryFilter}`
       );
-      console.log(
-        `${this.baseURL}/expense?search=${searchTerm}&year=${yearFilter}&month=${monthFilter}&category=${categoryFilter}`
-      );
       return response.data;
     } catch (error) {
       console.log(`Error: Could not get all Expense Records`);
