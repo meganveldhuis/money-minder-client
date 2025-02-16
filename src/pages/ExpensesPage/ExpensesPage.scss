@@ -6,12 +6,15 @@
 .expenses {
   &__header {
   }
+  &__main-title {
+    padding: 1rem 0;
+  }
   &__table-titles {
     display: flex;
     justify-content: space-between;
     padding: 0 1rem;
     border-bottom: 1px solid white;
-    margin-bottom: 0.5rem;
+    margin: 0.5rem 0;
   }
   &__titles {
     flex: 2;

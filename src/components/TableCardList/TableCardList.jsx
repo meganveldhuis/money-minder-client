@@ -11,19 +11,18 @@ function TableCardList({ isIncome, filters }) {
     async function getTableData() {
       if (isIncome) {
         data = await APIService.getAllIncome(
-          "",
+          filters.search,
           filters.yearFilter,
           filters.monthFilter,
           filters.categoryFilter
         );
       } else {
         data = await APIService.getAllExpenses(
-          "",
+          filters.search,
           filters.yearFilter,
           filters.monthFilter,
           filters.categoryFilter
         );
-        console.log("year: ", filters.yearFilter);
       }
       if (data) {
         setData(data);

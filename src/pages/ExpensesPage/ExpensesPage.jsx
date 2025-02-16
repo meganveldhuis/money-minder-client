@@ -8,11 +8,12 @@ function ExpensesPage() {
     yearFilter: "",
     monthFilter: "",
     categoryFilter: "",
+    search: "",
   });
   return (
     <div className="page-content expenses-page">
       <div className="expenses__header">
-        <h1>Expenses</h1>
+        <h1 className="expenses__main-title">Expenses</h1>
         <FilterList
           isAll={false}
           isIncome={false}

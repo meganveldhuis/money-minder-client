@@ -36,10 +36,14 @@ button {
 .page-content {
   margin: 1rem;
   position: relative;
-  top: 2.8rem;
+  top: 1.5rem;
   @include tablet {
     top: 0;
   }
+}
+
+.icon {
+  width: 1.5rem;
 }
 
 ::-webkit-scrollbar {
@@ -80,9 +84,14 @@ select,
 label,
 p {
   font-size: 0.8rem;
+  font-weight: $font-weight-extra-light;
+}
+label {
+  font-size: 0.8rem;
+  font-weight: $font-weight-regular;
 }
 h1 {
-  font-size: 1.219rem;
+  font-size: 1.4rem;
   font-weight: $font-weight-bold;
 }
 h2 {
