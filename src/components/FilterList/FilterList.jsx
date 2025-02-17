@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import APIService from "../../services/APIService.jsx";
 import cancelIcon from "../../assets/icons/cancel.svg";
 import searchIcon from "../../assets/icons/search.svg";
+import FilterDropdown from "../FilterDropdown/FilterDropdown.jsx";
 
 function FilterList({ isAll, isIncome, setFilters, filters }) {
   const [categories, setCategories] = useState([]);
@@ -87,6 +88,12 @@ function FilterList({ isAll, isIncome, setFilters, filters }) {
     <>
       <form className="filter">
         <div className="filter__top">
+          <FilterDropdown
+            label={"year"}
+            handleFilterSelect={handleFilterSelect}
+            filters={filters}
+            data={years}
+          />
           <div className="filter__item">
             <label htmlFor="yearFilter">Filter by Year</label>
             {years ? (

@@ -1,5 +1,10 @@
+import EntrySideBar from "../../components/EntrySideBar/EntrySideBar";
 function NewEntryPage() {
-  return <div></div>;
+  return (
+    <div>
+      <EntrySideBar />
+    </div>
+  );
 }
 
 export default NewEntryPage;
