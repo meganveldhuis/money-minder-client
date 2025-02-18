@@ -1,6 +1,8 @@
 import "./SummaryPage.scss";
 import FilterList from "../../components/FilterList/FilterList.jsx";
 import { useState } from "react";
+import SumPieChart from "../../components/SumPieChart/SumPieChart.jsx";
+
 function SummaryPage() {
   const [filters, setFilters] = useState({
     yearFilter: "",
@@ -19,6 +21,7 @@ function SummaryPage() {
           includeSearch={false}
         />
       </div>
+      <SumPieChart filters={filters} />
     </div>
   );
 }
