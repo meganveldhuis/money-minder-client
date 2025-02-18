@@ -3,6 +3,7 @@ import FilterList from "../../components/FilterList/FilterList.jsx";
 import { useState } from "react";
 import SumPieChart from "../../components/SumPieChart/SumPieChart.jsx";
 import MinimalPieChart from "../../components/MinimalPieChart/MinimalPieChart.jsx";
+import SummaryCardList from "../../components/SummaryCardList/SummaryCardList.jsx";
 
 function SummaryPage() {
   const [filters, setFilters] = useState({
@@ -23,7 +24,10 @@ function SummaryPage() {
         />
       </div>
       {/* <SumPieChart filters={filters} /> */}
-      <MinimalPieChart filters={filters} />
+      {/* <MinimalPieChart filters={filters} /> */}
+      <section>
+        <SummaryCardList />
+      </section>
     </div>
   );
 }

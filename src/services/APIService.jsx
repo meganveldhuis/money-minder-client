@@ -159,6 +159,26 @@ class APIService {
       console.log(`Error: Could not get all years`);
     }
   }
+
+  /* --------------------------------- BUDGET --------------------------------- */
+  async getAllBudget() {
+    try {
+      const response = await axios.get(`${this.baseURL}/budget`);
+      return response.data;
+    } catch (error) {
+      console.log(`Error: Could not get all budget lines`);
+    }
+  }
+  async getBudgetByCategoryID(categoryID) {
+    try {
+      const response = await axios.get(`${this.baseURL}/budget/${categoryID}`);
+      return response.data;
+    } catch (error) {
+      console.log(
+        `Error: Could not get budget lines with category id ${categoryID}`
+      );
+    }
+  }
 }
 
 export default new APIService();
