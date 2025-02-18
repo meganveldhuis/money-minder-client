@@ -1,0 +1,11 @@
+.pie-chart {
+  background-color: darkcyan;
+  width: 100%;
+  height: 100%;
+  &__legend {
+    color: white;
+  }
+  &__pie {
+    background-color: green;
+  }
+}

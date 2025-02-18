@@ -20,9 +20,11 @@ class APIService {
       console.log(`Error: Could not get all Expense Records`);
     }
   }
-  async getExpensesByCategory() {
+  async getExpensesByCategory(yearFilter = "", monthFilter = "") {
     try {
-      const response = await axios.get(`${this.baseURL}/expense/category`);
+      const response = await axios.get(
+        `${this.baseURL}/expense/category?year=${yearFilter}&month=${monthFilter}`
+      );
       return response.data;
     } catch (error) {
       console.log(`Error: Could not get all Expense Records by category`);
