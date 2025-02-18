@@ -57,10 +57,15 @@ class APIService {
   }
 
   /* --------------------------------- INCOME --------------------------------- */
-  async getAllIncome(searchTerm) {
+  async getAllIncome(
+    searchTerm = "",
+    yearFilter = "",
+    monthFilter = "",
+    categoryFilter = ""
+  ) {
     try {
       const response = await axios.get(
-        `${this.baseURL}/income?search=${searchTerm}`
+        `${this.baseURL}/income?search=${searchTerm}&year=${yearFilter}&month=${monthFilter}&category=${categoryFilter}`
       );
       return response.data;
     } catch (error) {
