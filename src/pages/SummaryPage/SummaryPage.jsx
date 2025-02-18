@@ -6,7 +6,6 @@ function SummaryPage() {
     yearFilter: "",
     monthFilter: "",
     categoryFilter: "",
-    search: "",
   });
   return (
     <div className="page-content summary-page">
@@ -17,13 +16,8 @@ function SummaryPage() {
           isIncome={false}
           filters={filters}
           setFilters={setFilters}
+          includeSearch={false}
         />
-        <div className="summary__table-titles">
-          <h4 className="summary__titles">Date</h4>
-          <h4 className="summary__titles">Name</h4>
-          <h4 className="summary__titles summary__titles--small">$</h4>
-          <h4 className="summary__titles">Category</h4>
-        </div>
       </div>
     </div>
   );

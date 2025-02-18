@@ -137,7 +137,7 @@ _Goal: done by Feb 14th_
 
 - [x] set up all tables
 - [x] seed initial data
-- [ ] set up all base routes/endpoints
+- [x] set up all base routes/endpoints
 - [ ] test they all work as expected
 
 ### Front-End
@@ -147,8 +147,8 @@ _Goal: done by Feb 14th_
 - [ ] Functionality: _Goal: done by Feb 18th_
   - [x] API service class
   - [ ] Summary/Overview Page
-  - [ ] Income Page
-  - [ ] Expense Page
+  - [x] Income Page
+  - [x] Expense Page
   - [ ] Add Entry Page/SideBar
 - [ ] Styling: _Goal: done by Saturday Feb 20th_
   - [ ] Summary/Overview Page
