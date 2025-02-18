@@ -7,25 +7,25 @@ function TableCardList({ isIncome, filters }) {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    let data = [];
+    let response = [];
     async function getTableData() {
       if (isIncome) {
-        data = await APIService.getAllIncome(
+        response = await APIService.getAllIncome(
           filters.search,
           filters.yearFilter,
           filters.monthFilter,
           filters.categoryFilter
         );
       } else {
-        data = await APIService.getAllExpenses(
+        response = await APIService.getAllExpenses(
           filters.search,
           filters.yearFilter,
           filters.monthFilter,
           filters.categoryFilter
         );
       }
-      if (data) {
-        setData(data);
+      if (response) {
+        setData(response);
       }
     }
     getTableData();
@@ -42,6 +42,4 @@ function TableCardList({ isIncome, filters }) {
     </ul>
   );
 }
-// {data.map((cardData) => <TableCard data={cardData} />)}
-
 export default TableCardList;

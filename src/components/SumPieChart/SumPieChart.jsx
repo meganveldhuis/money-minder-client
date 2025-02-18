@@ -2,13 +2,6 @@ import { useCallback, useEffect, useState } from "react";
 import { PieChart, Pie, Sector, ResponsiveContainer } from "recharts";
 import APIService from "../../services/APIService";
 
-// const data = [
-//   { name: "Group A", value: 400 },
-//   { name: "Group B", value: 300 },
-//   { name: "Group C", value: 300 },
-//   { name: "Group D", value: 200 },
-// ];
-
 const renderActiveShape = (props) => {
   const RADIAN = Math.PI / 180;
   const {
@@ -38,7 +31,7 @@ const renderActiveShape = (props) => {
     <g>
       {/* <text x={cx} y={cy} dy={8} textAnchor="middle" fill={fill}>
         {payload.name}
-        </text> */}
+      </text> */}
       <Sector
         cx={cx}
         cy={cy}
@@ -68,7 +61,7 @@ const renderActiveShape = (props) => {
         y={ey}
         textAnchor={textAnchor}
         fill="#333"
-      >{`PV ${value}`}</text>
+      >{`${payload.name} ${value}$`}</text>
       <text
         x={ex + (cos >= 0 ? 1 : -1) * 12}
         y={ey}
@@ -76,44 +69,59 @@ const renderActiveShape = (props) => {
         textAnchor={textAnchor}
         fill="#999"
       >
-        {`(Rate ${(percent * 100).toFixed(2)}%)`}
+        {`(${(percent * 100).toFixed(2)}%)`}
       </text>
     </g>
   );
 };
 
 function SumPieChart({ filters }) {
-  const [data, setData] = useState([]);
+  const [piData, setData] = useState([]);
+  const [activeIndex, setActiveIndex] = useState(0);
+
   async function getData() {
-    const response = await APIService.getAllExpenses();
-    setData(response);
+    const response = await APIService.getExpensesByCategory();
     console.log(response);
+    const parsedData = response.map((line) => {
+      return {
+        name: line.category_name,
+        value: Number(line.total),
+      };
+    });
+    setData(parsedData);
   }
   useEffect(() => {
     getData();
   }, []);
-  const demoUrl =
-    "https://codesandbox.io/s/pie-chart-with-customized-active-shape-y93si";
-  const [activeIndex, setActiveIndex] = useState(0);
 
   function handleMouseEnter(_, index) {
     setActiveIndex(index);
+    console.log(activeIndex);
   }
   return (
-    <PieChart width={400} height={400}>
-      <Pie
-        activeIndex={activeIndex}
-        activeShape={renderActiveShape}
-        data={data}
-        // cx="50%"
-        // cy="50%"
-        outerRadius={50}
-        innerRadius={20}
-        fill="#8884d8"
-        dataKey="value"
-        onMouseEnter={handleMouseEnter}
-      />
-    </PieChart>
+    <>
+      {piData.map((line, index) => (
+        <p key={index}>
+          {line.name} - {line.value}
+        </p>
+      ))}
+      {piData && (
+        <PieChart width={400} height={400}>
+          <Pie
+            activeIndex={activeIndex}
+            activeShape={renderActiveShape}
+            data={piData}
+            cx="50%"
+            cy="50%"
+            outerRadius={50}
+            innerRadius={20}
+            fill="#8884d8"
+            dataKey="value"
+            onMouseEnter={handleMouseEnter}
+          />
+        </PieChart>
+      )}
+    </>
   );
 }
 
