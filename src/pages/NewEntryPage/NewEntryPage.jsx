@@ -1,8 +1,8 @@
-import EntrySideBar from "../../components/EntrySideBar/EntrySideBar";
+import NewEntryModal from "../../components/NewEntryModal/NewEntryModal";
 function NewEntryPage() {
   return (
     <div>
-      <EntrySideBar />
+      <NewEntryModal />
     </div>
   );
 }

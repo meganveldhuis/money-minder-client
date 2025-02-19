@@ -1,7 +1,7 @@
 import "./Hamburger.scss";
-function Hamburger({ hamburgerOpen }) {
+function Hamburger({ hamburgerOpen, toggleHamburger }) {
   return (
-    <div className="hamburger">
+    <div className="hamburger" onClick={toggleHamburger}>
       <div
         className={`hamburger__burger ${
           hamburgerOpen ? "hamburger__burger1--open" : ""
