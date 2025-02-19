@@ -189,6 +189,23 @@ class APIService {
       console.log(`Error: Could not get all currencies`);
     }
   }
+  /* ---------------------------------- TRIPS --------------------------------- */
+  async getAllTrips() {
+    try {
+      const response = await axios.get(`${this.baseURL}/trips`);
+      return response.data;
+    } catch (error) {
+      console.log(`Error: Could not get all trips`);
+    }
+  }
+  async getTripById(trip_id) {
+    try {
+      const response = await axios.get(`${this.baseURL}/trips/${trip_id}`);
+      return response.data;
+    } catch (error) {
+      console.log(`Error: Could not get trip with id ${trip_id}`);
+    }
+  }
 }
 
 export default new APIService();

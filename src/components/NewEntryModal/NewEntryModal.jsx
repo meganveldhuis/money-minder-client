@@ -9,6 +9,7 @@ function NewEntryModal({ onClose }) {
   const [isIncome, setIsIncome] = useState(false);
   const [categories, setCategories] = useState([]);
   const [currencies, setCurrencies] = useState([]);
+  const [trips, setTrips] = useState([]);
   const [errors, setErrors] = useState({});
   const [formResponse, setFormResponse] = useState({
     date: new Date(),
@@ -50,6 +51,17 @@ function NewEntryModal({ onClose }) {
     }
 
     getCurrencies();
+  }, []);
+
+  useEffect(() => {
+    async function getTrips() {
+      const data = await APIService.getAllTrips();
+      if (data) {
+        setTrips(data);
+      }
+    }
+
+    getTrips();
   }, []);
 
   function validateForm() {
@@ -123,18 +135,27 @@ function NewEntryModal({ onClose }) {
   async function addEntry(newEntry) {
     if (isIncome) {
       const response = await APIService.postIncome(newEntry);
-      console.log(response);
+      if (response) {
+        console.log(response);
+        return true;
+      }
     } else {
       const response = await APIService.postExpense(newEntry);
-      console.log(response);
+      if (response) {
+        console.log(response);
+        return true;
+      }
     }
+    return false;
   }
 
   function handleSubmit(e) {
     e.preventDefault();
     console.log(formResponse);
     if (!validateForm()) return;
-    addEntry(formResponse);
+    if (addEntry(formResponse)) {
+      onClose();
+    }
   }
 
   return (
@@ -213,7 +234,7 @@ function NewEntryModal({ onClose }) {
                 >
                   {currencies.map((currency) => (
                     <option key={currency.id} value={currency.id}>
-                      {currency.id}-{currency.code}
+                      {currency.code}
                     </option>
                   ))}
                 </select>
@@ -261,7 +282,7 @@ function NewEntryModal({ onClose }) {
                 </option>
                 {categories.map((category) => (
                   <option key={category.id} value={category.id}>
-                    {category.id}-{category.category_name}
+                    {category.category_name}
                   </option>
                 ))}
               </select>
@@ -313,8 +334,11 @@ function NewEntryModal({ onClose }) {
                   value={formResponse.trip_id}
                 >
                   <option value=""> -- select an option -- </option>
-                  <option value="groceries">Banff</option>
-                  <option value="rent">Europe</option>
+                  {trips.map((trip) => (
+                    <option key={trip.id} value={trip.id}>
+                      {trip.trip_name}
+                    </option>
+                  ))}
                 </select>
                 {errors.trip_id && (
                   <div className="error__container">

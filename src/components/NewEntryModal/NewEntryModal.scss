@@ -107,6 +107,12 @@
       flex: 2;
       background-color: $color-dark-green;
     }
+    &:hover {
+      filter: hue-rotate(25deg);
+      filter: brightness(90%);
+      transition: ease-in-out 0.25s;
+      box-shadow: 1px 1px 10px $color-black;
+    }
     @include tablet {
       flex: 1;
     }
@@ -136,7 +142,7 @@
   height: 28px;
   transition: background-color 0.1s ease, border-color 0.2s ease;
   cursor: pointer;
-  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.748);
+  box-shadow: 1px 1px 10px $color-black;
   position: relative;
 }
 

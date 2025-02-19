@@ -20,7 +20,7 @@ function Navbar({ setIsModalOpen }) {
         className={`navbar__list ${hamburgerOpen ? "navbar__list--open" : ""}`}
       >
         <li className={`navbar__item`}>
-          <Link to={`/`} onClick={toggleHamburger}>
+          <Link to={`/`} onClick={() => setHamburgerOpen(false)}>
             <p className="navbar__text">Summary</p>
           </Link>
         </li>
@@ -28,24 +28,24 @@ function Navbar({ setIsModalOpen }) {
           <Link
             onClick={() => {
               setIsModalOpen(true);
-              toggleHamburger();
+              setHamburgerOpen(false);
             }}
           >
             <p className="navbar__text">+ Add New Entry</p>
           </Link>
         </li>
         <li className={`navbar__item`}>
-          <Link to={`/expenses`} onClick={toggleHamburger}>
+          <Link to={`/expenses`} onClick={() => setHamburgerOpen(false)}>
             <p className="navbar__text">Expenses</p>
           </Link>
         </li>
         <li className={`navbar__item`}>
-          <Link to={`/income`} onClick={toggleHamburger}>
+          <Link to={`/income`} onClick={() => setHamburgerOpen(false)}>
             <p className="navbar__text">Income</p>
           </Link>
         </li>
         <li className={`navbar__item`}>
-          <Link to={`/budget`} onClick={toggleHamburger}>
+          <Link to={`/budget`} onClick={() => setHamburgerOpen(false)}>
             <p className="navbar__text">Budget</p>
           </Link>
         </li>
