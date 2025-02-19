@@ -1,19 +1,83 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./NewEntryModal.scss";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import APIService from "../../services/APIService";
 
 function NewEntryModal({ onClose }) {
   const [isIncome, setIsIncome] = useState(false);
+  const [categories, setCategories] = useState([]);
+  const [currencies, setCurrencies] = useState([]);
+  const [errors, setErrors] = useState({});
   const [formResponse, setFormResponse] = useState({
     date: new Date(),
     amount: 0,
-    currency: "CAD",
-    category: "",
-    note: "",
+    currency_id: 1,
+    category_id: 0,
+    name: "",
     isTrip: false,
-    tripName: "",
+    trip_id: 0,
   });
+  function handleOverlayClick(e) {
+    if (e.target.className === "entry-modal-overlay") {
+      onClose();
+    }
+  }
+
+  useEffect(() => {
+    async function getCategories() {
+      let data;
+      if (isIncome) {
+        data = await APIService.getAllIncomeCategories();
+      } else {
+        data = await APIService.getAllExpenseCategories();
+      }
+      if (data) {
+        setCategories(data);
+      }
+    }
+
+    getCategories();
+  }, [isIncome]);
+
+  useEffect(() => {
+    async function getCurrencies() {
+      const data = await APIService.getAllCurrency();
+      if (data) {
+        setCurrencies(data);
+      }
+    }
+
+    getCurrencies();
+  }, []);
+
+  function validateForm() {
+    let newErrors = {};
+    if (!formResponse.date) newErrors.date = "Date is required";
+
+    if (!formResponse.amount) newErrors.amount = "Amount is required";
+
+    if (isIncome) {
+      setFormResponse((prevState) => {
+        return {
+          ...prevState,
+          name: "",
+        };
+      });
+    } else {
+      if (!formResponse.name.trim()) newErrors.name = "Name is required";
+    }
+
+    if (!formResponse.category_id)
+      newErrors.category_id = "Category is required";
+
+    if (!formResponse.currency_id)
+      newErrors.currency_id = "Currency is required";
+
+    setErrors(newErrors);
+    console.log(newErrors);
+    return Object.keys(newErrors).length === 0;
+  }
 
   function handleInputChange(e) {
     const { name, value, type, checked } = e.target;
@@ -23,34 +87,77 @@ function NewEntryModal({ onClose }) {
         [name]: type === "checkbox" ? checked : value,
       };
     });
-  }
-  function handleOverlayClick(e) {
-    console.log(e.target.className === "entry-modal-overlay");
-    if (e.target.className === "entry-modal-overlay") {
-      onClose();
+    if (value.length > 0) {
+      if (errors[name]) {
+        setErrors((prev) => {
+          return {
+            ...prev,
+            [name]: "",
+          };
+        });
+      }
     }
-    //Close Modal
+    if (name === "amount") {
+      console.log(name, value, Number(value) > 0);
+      if (Number(value) > 0) {
+        if (errors.amount) {
+          setErrors((prev) => {
+            return {
+              ...prev,
+              amount: "",
+            };
+          });
+        }
+      } else {
+        setErrors((prev) => {
+          return {
+            ...prev,
+            amount: "Non-zero amount is required",
+          };
+        });
+      }
+    }
+  }
+
+  async function addEntry(newEntry) {
+    if (isIncome) {
+      const response = await APIService.postIncome(newEntry);
+      console.log(response);
+    } else {
+      const response = await APIService.postExpense(newEntry);
+      console.log(response);
+    }
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    console.log(formResponse);
+    if (!validateForm()) return;
+    addEntry(formResponse);
   }
 
   return (
     <div className="entry-modal-overlay" onClick={(e) => handleOverlayClick(e)}>
       <section className="entry-modal">
-        <h2>New Entry</h2>
-        <div>
-          <p>Expense</p>
+        <h2 className="entry-modal__title">Add New Entry</h2>
+        <div className="entry-modal__toggle-div">
+          <h3>Expense</h3>
           <button
             className={`toggle-btn ${isIncome ? "toggled" : ""}`}
             onClick={() => setIsIncome((prev) => !prev)}
           >
             <div className="thumb"></div>
           </button>
-          <p>Income</p>
+          <h3>Income</h3>
         </div>
 
         <form className="form">
           <div className="form__item">
-            <label htmlFor="date">Date</label>
+            <label className="form__label" htmlFor="date">
+              Date
+            </label>
             <DatePicker
+              className="form__input"
               todayButton="TODAY"
               showIcon
               name="date"
@@ -65,91 +172,159 @@ function NewEntryModal({ onClose }) {
                 })
               }
             />
+            {errors.date && (
+              <div className="error__container">
+                {/* <img className="error__icon" src={errorIcon} alt="Error" /> */}
+                <p className="error__text">{errors.date}</p>
+              </div>
+            )}
           </div>
           <div className="form__item">
-            <label htmlFor="amount">Amount</label>
+            <label className="form__label" htmlFor="amount">
+              Amount
+            </label>
             <input
+              className="form__input"
               id="amount"
               name="amount"
+              type="number"
               onChange={(e) => handleInputChange(e)}
               value={formResponse.amount}
             ></input>
+            {errors.amount && (
+              <div className="error__container">
+                {/* <img className="error__icon" src={errorIcon} alt="Error" /> */}
+                <p className="error__text">{errors.amount}</p>
+              </div>
+            )}
           </div>
           <div className="form__item">
-            <label htmlFor="category">Currency</label>
+            <label className="form__label" htmlFor="category_id">
+              Currency
+            </label>
             <select
-              id="currency"
-              name="currency"
+              className="form__input"
+              id="currency_id"
+              name="currency_id"
               onChange={(e) => handleInputChange(e)}
-              value={formResponse.currency}
+              value={formResponse.currency_id}
             >
-              <option value="cad">CAD</option>
-              <option value="usd">USD</option>
+              {currencies.map((currency) => (
+                <option key={currency.id} value={currency.id}>
+                  {currency.id}-{currency.code}
+                </option>
+              ))}
             </select>
+            {errors.currency_id && (
+              <div className="error__container">
+                {/* <img className="error__icon" src={errorIcon} alt="Error" /> */}
+                <p className="error__text">{errors.currency_id}</p>
+              </div>
+            )}
           </div>
+
           <div className="form__item">
-            <label htmlFor="category">Category</label>
+            <label className="form__label" htmlFor="name">
+              Name
+            </label>
+            <input
+              className="form__input"
+              id="name"
+              name="name"
+              onChange={(e) => handleInputChange(e)}
+              value={formResponse.name}
+            ></input>
+            {errors.name && (
+              <div className="error__container">
+                {/* <img className="error__icon" src={errorIcon} alt="Error" /> */}
+                <p className="error__text">{errors.name}</p>
+              </div>
+            )}
+          </div>
+
+          <div className="form__item">
+            <label className="form__label" htmlFor="category_id">
+              Category
+            </label>
             <select
-              id="category"
-              name="category"
+              className="form__input"
+              id="category_id"
+              name="category_id"
               onChange={(e) => handleInputChange(e)}
-              value={formResponse.category}
+              value={formResponse.category_id}
             >
-              {isIncome ? (
-                <>
-                  <option value=""> -- select an option -- </option>
-                  <option value="job">Job</option>
-                </>
-              ) : (
-                <>
-                  <option value=""> -- select an option -- </option>
-                  <option value="groceries">Groceries</option>
-                  <option value="rent">Rent</option>
-                </>
-              )}
+              <option key={0} value={0}>
+                --Select Category--
+              </option>
+              {categories.map((category) => (
+                <option key={category.id} value={category.id}>
+                  {category.id}-{category.category_name}
+                </option>
+              ))}
             </select>
+            {errors.category_id && (
+              <div className="error__container">
+                {/* <img className="error__icon" src={errorIcon} alt="Error" /> */}
+                <p className="error__text">{errors.category_id}</p>
+              </div>
+            )}
           </div>
-          <div className="form__item">
-            <label htmlFor="note">Note</label>
-            <textarea
-              id="note"
-              name="note"
-              onChange={(e) => handleInputChange(e)}
-              value={formResponse.note}
-            ></textarea>
-          </div>
+
           {!isIncome ? (
             <>
               <div className="form__item">
-                <label htmlFor="isTrip">Trip Expense?</label>
+                <label className="form__label" htmlFor="isTrip">
+                  Trip Expense?
+                </label>
                 <input
+                  className="form__checkbox"
                   type="checkbox"
                   id="isTrip"
                   name="isTrip"
                   onChange={(e) => handleInputChange(e)}
                   checked={formResponse.isTrip}
                 ></input>
+                {errors.isTrip && (
+                  <div className="error__container">
+                    {/* <img className="error__icon" src={errorIcon} alt="Error" /> */}
+                    <p className="error__text">{errors.isTrip}</p>
+                  </div>
+                )}
               </div>
               {formResponse.isTrip && (
                 <div className="form__item">
-                  <label htmlFor="tripName">Trip Name</label>
+                  <label className="form__label" htmlFor="trip_id">
+                    Trip Name
+                  </label>
                   <select
-                    id="tripName"
-                    name="tripName"
+                    className="form__input"
+                    id="trip_id"
+                    name="trip_id"
                     onChange={(e) => handleInputChange(e)}
-                    value={formResponse.tripName}
+                    value={formResponse.trip_id}
                   >
                     <option value=""> -- select an option -- </option>
                     <option value="groceries">Banff</option>
                     <option value="rent">Europe</option>
                   </select>
+                  {errors.trip_id && (
+                    <div className="error__container">
+                      {/* <img className="error__icon" src={errorIcon} alt="Error" /> */}
+                      <p className="error__text">{errors.trip_id}</p>
+                    </div>
+                  )}
                 </div>
-              )}{" "}
+              )}
             </>
           ) : (
             <></>
           )}
-          <button>Submit</button>
+          <button type="reset" onClick={onClose}>
+            Cancel
+          </button>
+          <button type="submit" onClick={handleSubmit}>
+            Submit
+          </button>
         </form>
       </section>
     </div>
