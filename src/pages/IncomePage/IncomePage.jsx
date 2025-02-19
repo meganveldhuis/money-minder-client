@@ -3,7 +3,7 @@ import FilterList from "../../components/FilterList/FilterList";
 import TableCardList from "../../components/TableCardList/TableCardList";
 import { useState } from "react";
 
-function IncomePage() {
+function IncomePage({ reloadData }) {
   const [filters, setFilters] = useState({
     yearFilter: "",
     monthFilter: "",
@@ -27,7 +27,11 @@ function IncomePage() {
           <h4 className="income__titles">Category</h4>
         </div>
       </div>
-      <TableCardList isIncome={true} filters={filters} />
+      <TableCardList
+        isIncome={true}
+        filters={filters}
+        reloadData={reloadData}
+      />
     </div>
   );
 }

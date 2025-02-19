@@ -4,7 +4,12 @@ import { useEffect, useState } from "react";
 import APIService from "../../services/APIService";
 import LegendItem from "../LegendItem/LegendItem";
 
-function MUIPieChart({ filters, setHighlightedItem, highlightedItem }) {
+function MUIPieChart({
+  filters,
+  setHighlightedItem,
+  highlightedItem,
+  reloadData,
+}) {
   const [pieHighlightedItem, setPieHighlightedItem] = useState(null);
   const [data, setData] = useState([]);
   // const [selectedItem, setSelectedItem] = useState([]);
@@ -45,7 +50,7 @@ function MUIPieChart({ filters, setHighlightedItem, highlightedItem }) {
 
   useEffect(() => {
     getData();
-  }, [filters]);
+  }, [filters, reloadData]);
 
   useEffect(() => {
     if (pieHighlightedItem) {

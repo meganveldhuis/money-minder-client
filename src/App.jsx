@@ -10,16 +10,34 @@ import { useState } from "react";
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [reloadData, setReloadData] = useState(true);
+  // function onNewSubmit() {
+  //   setReloadData((prev) => !prev);
+  // }
   return (
     <BrowserRouter>
       <Navbar setIsModalOpen={setIsModalOpen} />
-      {isModalOpen && <NewEntryModal onClose={() => setIsModalOpen(false)} />}
+      {isModalOpen && (
+        <NewEntryModal
+          setReloadData={setReloadData}
+          onClose={() => setIsModalOpen(false)}
+        />
+      )}
       <button onClick={() => setIsModalOpen(true)}>+ Add New Entry</button>
       <Routes>
-        <Route path="/" element={<SummaryPage />} />
-        <Route path="/expenses" element={<ExpensesPage />} />
-        <Route path="/income" element={<IncomePage />} />
-        <Route path="/budget" element={<BudgetPage />} />
+        <Route path="/" element={<SummaryPage reloadData={reloadData} />} />
+        <Route
+          path="/expenses"
+          element={<ExpensesPage reloadData={reloadData} />}
+        />
+        <Route
+          path="/income"
+          element={<IncomePage reloadData={reloadData} />}
+        />
+        <Route
+          path="/budget"
+          element={<BudgetPage reloadData={reloadData} />}
+        />
       </Routes>
     </BrowserRouter>
   );

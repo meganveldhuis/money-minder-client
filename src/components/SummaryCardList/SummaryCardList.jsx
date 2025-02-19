@@ -3,7 +3,7 @@ import SummaryCard from "../SummaryCard/SummaryCard";
 import { useEffect, useState } from "react";
 import APIService from "../../services/APIService";
 
-function SummaryCardList({ filters, highlightedItem }) {
+function SummaryCardList({ filters, highlightedItem, reloadData }) {
   const [data, setData] = useState([]);
   // let setHighlight;
   // if (highlightedItem) {
@@ -36,7 +36,7 @@ function SummaryCardList({ filters, highlightedItem }) {
   }
   useEffect(() => {
     getData();
-  }, [filters]);
+  }, [filters, reloadData]);
   return (
     <>
       {data ? (

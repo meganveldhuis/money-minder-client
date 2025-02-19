@@ -5,7 +5,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import APIService from "../../services/APIService";
 import errorIcon from "../../assets/icons/error.svg";
 
-function NewEntryModal({ onClose }) {
+function NewEntryModal({ onClose, setReloadData }) {
   const [isIncome, setIsIncome] = useState(false);
   const [categories, setCategories] = useState([]);
   const [currencies, setCurrencies] = useState([]);
@@ -88,7 +88,6 @@ function NewEntryModal({ onClose }) {
       newErrors.currency_id = "Currency is required";
 
     setErrors(newErrors);
-    console.log(newErrors);
     return Object.keys(newErrors).length === 0;
   }
 
@@ -111,7 +110,6 @@ function NewEntryModal({ onClose }) {
       }
     }
     if (name === "amount") {
-      console.log(name, value, Number(value) > 0);
       if (Number(value) > 0) {
         if (errors.amount) {
           setErrors((prev) => {
@@ -136,24 +134,22 @@ function NewEntryModal({ onClose }) {
     if (isIncome) {
       const response = await APIService.postIncome(newEntry);
       if (response) {
-        console.log(response);
         return true;
       }
     } else {
       const response = await APIService.postExpense(newEntry);
       if (response) {
-        console.log(response);
         return true;
       }
     }
     return false;
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    console.log(formResponse);
     if (!validateForm()) return;
-    if (addEntry(formResponse)) {
+    if (await addEntry(formResponse)) {
+      setReloadData((prev) => !prev);
       onClose();
     }
   }
@@ -296,7 +292,7 @@ function NewEntryModal({ onClose }) {
 
             <div
               className={`form__item form__item--row ${
-                isIncome && "form__item--hidden"
+                isIncome ? "form__item--hidden" : ""
               }`}
             >
               <label className="form__label" htmlFor="isTrip">

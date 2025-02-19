@@ -4,7 +4,7 @@ import { useState } from "react";
 import SummaryCardList from "../../components/SummaryCardList/SummaryCardList.jsx";
 import MUIPieChart from "../../components/MUIPieChart/MUIPieChart.jsx";
 
-function SummaryPage() {
+function SummaryPage({ reloadData }) {
   const [filters, setFilters] = useState({
     yearFilter: "",
     monthFilter: "",
@@ -29,11 +29,13 @@ function SummaryPage() {
           filters={filters}
           highlightedItem={highlightedItem}
           setHighlightedItem={setHighlightedItem}
+          reloadData={reloadData}
         />
         <section className="summary-card-list">
           <SummaryCardList
             filters={filters}
             highlightedItem={highlightedItem}
+            reloadData={reloadData}
           />
         </section>
       </div>

@@ -78,9 +78,10 @@
     &--selected {
       background-color: rgba($color-dark-purple, 0.8);
     }
-    &--right-padding {
-      padding-right: 14rem;
-    }
+  }
+  &__checkbox {
+    height: 80%;
+    width: 0px;
   }
   &__btns {
     // position: absolute;
@@ -111,7 +112,7 @@
       filter: hue-rotate(25deg);
       filter: brightness(90%);
       transition: ease-in-out 0.25s;
-      box-shadow: 1px 1px 10px $color-black;
+      box-shadow: 1px 1px 0.625rem $color-black;
     }
     @include tablet {
       flex: 1;
@@ -137,20 +138,20 @@
 .toggle-btn {
   background-color: $color-dark-rose;
   border: 1px solid $color-text;
-  border-radius: 99px;
-  width: 50px;
-  height: 28px;
+  border-radius: 6rem;
+  width: 3.125rem;
+  height: 1.75rem;
   transition: background-color 0.1s ease, border-color 0.2s ease;
   cursor: pointer;
-  box-shadow: 1px 1px 10px $color-black;
+  box-shadow: 1px 1px 0.625rem $color-black;
   position: relative;
 }
 
 .toggle-btn .thumb {
-  height: 20px;
-  width: 20px;
+  height: 1.25rem;
+  width: 1.25rem;
   background-color: $color-text;
-  border-radius: 99px;
+  border-radius: 6rem;
   transform: translateX(0);
   transition: left 0.15s ease;
   position: absolute;
@@ -166,5 +167,5 @@
   border-color: $color-dark-purple;
 }
 .toggle-btn.toggled .thumb {
-  left: calc(50px - 25px);
+  left: calc(3.125rem - 1.563rem);
 }

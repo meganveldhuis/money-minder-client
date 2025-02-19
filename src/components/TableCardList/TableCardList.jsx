@@ -3,7 +3,7 @@ import TableCard from "../TableCard/TableCard";
 import APIService from "../../services/APIService";
 import { useEffect, useState } from "react";
 
-function TableCardList({ isIncome, filters }) {
+function TableCardList({ isIncome, filters, reloadData }) {
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -29,7 +29,7 @@ function TableCardList({ isIncome, filters }) {
       }
     }
     getTableData();
-  }, [filters]);
+  }, [filters, reloadData]);
   return (
     <ul className="card-list">
       {data ? (

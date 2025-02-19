@@ -5,6 +5,11 @@
   flex-direction: column;
   align-items: center;
   gap: 0.3rem;
+  padding: 0.3rem 0;
+  @include tablet {
+    gap: 0.8rem;
+    padding: 1rem 0;
+  }
   &__top {
     display: flex;
     justify-content: space-between;
@@ -40,9 +45,8 @@
     color: inherit;
     border: 1px solid $color-text;
     border-radius: $border-radius-inputs;
-    height: 2rem;
     min-width: 4.4rem;
-    padding: 0.3rem;
+    padding: 0.3rem 0.3rem;
     cursor: pointer;
     &:hover {
       background-color: rgba($color-dark-purple, 0.8);
@@ -59,8 +63,14 @@
   &__search-icon {
     position: absolute;
     right: 10px;
-    top: 8px;
+    top: 22%;
     width: 15px;
+    @include tablet {
+      width: 18px;
+    }
+    @include desktop {
+      width: 20px;
+    }
   }
   &__cancel {
     padding: 0 1rem;

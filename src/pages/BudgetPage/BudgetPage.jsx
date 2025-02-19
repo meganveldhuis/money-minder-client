@@ -1,4 +1,4 @@
-function BudgetPage() {
+function BudgetPage({ reloadData }) {
   return <div></div>;
 }
 

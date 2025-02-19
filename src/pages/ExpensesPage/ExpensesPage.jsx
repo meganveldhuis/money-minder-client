@@ -3,7 +3,7 @@ import FilterList from "../../components/FilterList/FilterList";
 import TableCardList from "../../components/TableCardList/TableCardList";
 import { useState } from "react";
 
-function ExpensesPage() {
+function ExpensesPage({ reloadData }) {
   const [filters, setFilters] = useState({
     yearFilter: "",
     monthFilter: "",
@@ -27,7 +27,11 @@ function ExpensesPage() {
           <h4 className="expenses__titles">Category</h4>
         </div>
       </div>
-      <TableCardList isIncome={false} filters={filters} />
+      <TableCardList
+        isIncome={false}
+        filters={filters}
+        reloadData={reloadData}
+      />
       {/* scrollable table cards */}
     </div>
   );
