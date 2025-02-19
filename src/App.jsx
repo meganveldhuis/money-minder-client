@@ -1,4 +1,5 @@
 import "./styles/partials/_global.scss";
+import "./App.scss";
 import NewEntryModal from "./components/NewEntryModal/NewEntryModal";
 import Navbar from "./components/Navbar/Navbar";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
@@ -23,7 +24,9 @@ function App() {
           onClose={() => setIsModalOpen(false)}
         />
       )}
-      <button onClick={() => setIsModalOpen(true)}>+ Add New Entry</button>
+      <button className="add-button" onClick={() => setIsModalOpen(true)}>
+        +
+      </button>
       <Routes>
         <Route path="/" element={<SummaryPage reloadData={reloadData} />} />
         <Route
