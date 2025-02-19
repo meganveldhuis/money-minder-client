@@ -4,6 +4,7 @@ import { useState } from "react";
 import SumPieChart from "../../components/SumPieChart/SumPieChart.jsx";
 import MinimalPieChart from "../../components/MinimalPieChart/MinimalPieChart.jsx";
 import SummaryCardList from "../../components/SummaryCardList/SummaryCardList.jsx";
+import MUIPieChart from "../../components/MUIPieChart/MUIPieChart.jsx";
 
 function SummaryPage() {
   const [filters, setFilters] = useState({
@@ -23,8 +24,9 @@ function SummaryPage() {
           includeSearch={false}
         />
       </div>
-      <SumPieChart filters={filters} />
+      {/* <SumPieChart filters={filters} /> */}
       {/* <MinimalPieChart filters={filters} /> */}
+      <MUIPieChart filters={filters} />
       <section>
         <SummaryCardList />
       </section>
