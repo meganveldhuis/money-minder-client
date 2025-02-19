@@ -1,10 +1,10 @@
-import "./MUIPieChart.scss";
+import "./PieChart.scss";
 import { PieChart, pieArcLabelClasses } from "@mui/x-charts";
 import { useEffect, useState } from "react";
 import APIService from "../../services/APIService";
 import LegendItem from "../LegendItem/LegendItem";
 
-function MUIPieChart({
+function SumPieChart({
   filters,
   setHighlightedItem,
   highlightedItem,
@@ -12,7 +12,6 @@ function MUIPieChart({
 }) {
   const [pieHighlightedItem, setPieHighlightedItem] = useState(null);
   const [data, setData] = useState([]);
-  // const [selectedItem, setSelectedItem] = useState([]);
   const TOTAL = data.map((item) => item.value).reduce((a, b) => a + b, 0);
   const colors = [
     "#6D597A",
@@ -65,20 +64,27 @@ function MUIPieChart({
     return `${params.title}: ${(percent * 100).toFixed(0)}%`;
   };
 
-  // function handleClick(d) {
-  //   setHighLightedItem(data[d.dataIndex]);
-  //   console.log(data[d.dataIndex]);
-  // }
+  function handleClick(d) {
+    // setHighLightedItem(data[d.dataIndex]);
+    console.log(data[d.dataIndex]);
+    console.log(d);
+  }
 
   return (
     <section className="pie-chart">
       <div className="pie-chart__legend">
+        <p className="pie-chart__legend-title">
+          Click on an item to highlight it:
+        </p>
         {data.map((item, index) => (
           <LegendItem
             key={index}
             color={item.color}
             label={item.label}
+            setPieHighlightedItem={setPieHighlightedItem}
+            pieHighlightedItem={pieHighlightedItem}
             isHighlighted={item.label === highlightedItem.title}
+            dataIndex={index}
           />
         ))}
       </div>
@@ -87,6 +93,7 @@ function MUIPieChart({
         className="pie-chart__chart"
         series={[
           {
+            id: "summary",
             arcLabelMinAngle: 25,
             innerRadius: "30%",
             outerRadius: "90%",
@@ -100,10 +107,9 @@ function MUIPieChart({
             highlightScope: { highlight: "item", fade: "global" },
           },
         ]}
-        highlightedItem={pieHighlightedItem}
-        // onHighlightChange={(event, d) => setHighLightedItem(data[d.dataIndex])}
+        highlightedItem={pieHighlightedItem} // { dataIndex: 2, seriesId: "summary" }
         onHighlightChange={setPieHighlightedItem}
-        // onItemClick={(event, d) => handleClick(d)}
+        onItemClick={(event, d) => handleClick(d)}
         sx={{
           [`& .${pieArcLabelClasses.root}`]: {
             fill: "white",
@@ -116,4 +122,4 @@ function MUIPieChart({
   );
 }
 
-export default MUIPieChart;
+export default SumPieChart;

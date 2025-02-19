@@ -1,9 +1,29 @@
-function LegendItem({ color, label, isHighlighted }) {
+function LegendItem({
+  color,
+  label,
+  dataIndex,
+  isHighlighted,
+  setPieHighlightedItem,
+  pieHighlightedItem,
+}) {
+  function onTouch() {
+    console.log("pieHighlightedItem: ", pieHighlightedItem);
+    if (pieHighlightedItem && pieHighlightedItem.dataIndex === dataIndex) {
+      setPieHighlightedItem(null);
+    } else {
+      setPieHighlightedItem({
+        dataIndex: dataIndex,
+        seriesId: "summary",
+      });
+    }
+  }
   return (
     <div
       className={`pie-chart-legend__item ${
         isHighlighted ? "pie-chart-legend__item--focus" : ""
       }`}
+      onTouchMove={onTouch}
+      onClick={onTouch}
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
