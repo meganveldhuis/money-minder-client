@@ -179,6 +179,16 @@ class APIService {
       );
     }
   }
+
+  /* ------------------------------- CURRENCIES ------------------------------- */
+  async getAllCurrency() {
+    try {
+      const response = await axios.get(`${this.baseURL}/currency`);
+      return response.data;
+    } catch (error) {
+      console.log(`Error: Could not get all currencies`);
+    }
+  }
 }
 
 export default new APIService();
