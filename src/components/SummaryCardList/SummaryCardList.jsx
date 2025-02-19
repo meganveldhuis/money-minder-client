@@ -1,17 +1,9 @@
-import "./SummaryCardList.scss";
 import SummaryCard from "../SummaryCard/SummaryCard";
 import { useEffect, useState } from "react";
 import APIService from "../../services/APIService";
 
 function SummaryCardList({ filters, highlightedItem, reloadData }) {
   const [data, setData] = useState([]);
-  // let setHighlight;
-  // if (highlightedItem) {
-  //   setHighlight = highlightedItem.title;
-  // } else {
-  //   setHighlight = "none";
-  // }
-  // console.log(setHighlight);
   async function getData() {
     const expensesByCategoryResponse = await APIService.getExpensesByCategory(
       filters.yearFilter,

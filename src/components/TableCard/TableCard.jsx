@@ -23,7 +23,7 @@ function TableCard({ record }) {
       <div className="item__info item__info--small">
         <p className="item__text">{record.amount}</p>
       </div>
-      <div className="item__info item__info--space-around">
+      <div className="item__info">
         <p className="item__text">{record.category_name}</p>
         <img className="item__icon" src={rightArrowIcon} />
       </div>
