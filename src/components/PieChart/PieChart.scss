@@ -14,15 +14,27 @@
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    &-title {
+      width: 100%;
+      text-align: center;
+    }
     @include tablet {
+      align-items: flex-start;
+      justify-content: flex-start;
       margin: 1.2rem;
       flex-direction: column;
+      &-title {
+        text-align: left;
+      }
     }
   }
   &-legend__item {
     display: flex;
     gap: 0.2rem;
     align-items: center;
+    cursor: pointer;
     &--focus {
       color: $color-black;
     }

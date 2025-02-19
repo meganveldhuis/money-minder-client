@@ -2,7 +2,7 @@ import "./SummaryPage.scss";
 import FilterList from "../../components/FilterList/FilterList.jsx";
 import { useState } from "react";
 import SummaryCardList from "../../components/SummaryCardList/SummaryCardList.jsx";
-import MUIPieChart from "../../components/MUIPieChart/MUIPieChart.jsx";
+import PieChart from "../../components/PieChart/PieChart.jsx";
 
 function SummaryPage({ reloadData }) {
   const [filters, setFilters] = useState({
@@ -25,7 +25,7 @@ function SummaryPage({ reloadData }) {
         />
       </div>
       <div className="summary__content">
-        <MUIPieChart
+        <PieChart
           filters={filters}
           highlightedItem={highlightedItem}
           setHighlightedItem={setHighlightedItem}
