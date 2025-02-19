@@ -3,6 +3,14 @@
 .summary {
   &__header {
   }
+  &__content {
+    display: flex;
+    flex-direction: column;
+    @include desktop {
+      flex-direction: row;
+      gap: 1rem;
+    }
+  }
   &__main-title {
     padding: 1rem 0;
   }

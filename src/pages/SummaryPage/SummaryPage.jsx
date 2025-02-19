@@ -23,10 +23,12 @@ function SummaryPage() {
           includeCategory={false}
         />
       </div>
-      <MUIPieChart filters={filters} />
-      <section>
-        <SummaryCardList />
-      </section>
+      <div className="summary__content">
+        <MUIPieChart filters={filters} />
+        <section>
+          <SummaryCardList />
+        </section>
+      </div>
     </div>
   );
 }
