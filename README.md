@@ -146,12 +146,12 @@ _Goal: done by Feb 14th_
 
 - [ ] Functionality: _Goal: done by Feb 18th_
   - [x] API service class
-  - [ ] Summary/Overview Page
+  - [x] Summary/Overview Page
   - [x] Income Page
   - [x] Expense Page
   - [ ] Add Entry Page/SideBar
 - [ ] Styling: _Goal: done by Saturday Feb 20th_
-  - [ ] Summary/Overview Page
+  - [x] Summary/Overview Page
   - [ ] Income Page
   - [ ] Expense Page
   - [ ] Add Entry Page/SideBar
@@ -161,6 +161,7 @@ _Goal: done by Feb 14th_
 _Goal: done by Sunday Feb 23th_
 
 - [ ] Test all pages, endpoints, situations
+- [ ] Clean up code
 
 ### Add Other Features
 
