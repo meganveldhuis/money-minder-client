@@ -23,7 +23,7 @@ function SummaryPage() {
           includeSearch={false}
         />
       </div>
-      {/* <SumPieChart filters={filters} /> */}
+      <SumPieChart filters={filters} />
       {/* <MinimalPieChart filters={filters} /> */}
       <section>
         <SummaryCardList />

@@ -1,6 +1,9 @@
 import "./SummaryCard.scss";
 function SummaryCard({ cardData }) {
   const difference = cardData.budgetAmount - cardData.total;
+  const stringDifference =
+    difference > 0 ? `+${difference.toFixed(2)}` : difference.toFixed(2);
+
   return (
     <div className="summary-card">
       <h3 className="summary-card__title">{cardData.category_name}</h3>
@@ -13,7 +16,7 @@ function SummaryCard({ cardData }) {
             : "summary-card__number--red"
         }`}
       >
-        {difference}$
+        {stringDifference}$
       </h2>
       <div className="summary-card__bottom">
         <div className="summary-card__bottom-left">

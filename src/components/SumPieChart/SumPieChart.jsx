@@ -1,6 +1,13 @@
 import "./SumPieChart.scss";
 import { useCallback, useEffect, useState } from "react";
-import { PieChart, Pie, Sector, Legend } from "recharts";
+import {
+  PieChart,
+  Pie,
+  Sector,
+  Legend,
+  ResponsiveContainer,
+  Cell,
+} from "recharts";
 import APIService from "../../services/APIService";
 
 function SumPieChart({ filters }) {
@@ -105,7 +112,7 @@ function SumPieChart({ filters }) {
   return (
     <>
       {piData.length !== 0 ? (
-        <PieChart className="pie-chart" width={400} height={400}>
+        <PieChart className="pie-chart" width={500} height={500}>
           <Legend className="pie-chart__legend" />
           <Pie
             className="pie-chart__pie"
@@ -114,8 +121,8 @@ function SumPieChart({ filters }) {
             data={piData}
             cx="50%"
             cy="50%"
-            outerRadius={50}
-            innerRadius={20}
+            outerRadius={200}
+            innerRadius={50}
             fill="#8884d8"
             dataKey="value"
             onMouseEnter={handleMouseEnter}

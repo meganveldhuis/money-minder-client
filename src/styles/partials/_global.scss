@@ -13,7 +13,7 @@ html {
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
-  font: "Roboto-Condensed";
+  font: $font-family-primary;
 }
 body,
 textarea,
@@ -98,10 +98,10 @@ h2 {
   font-size: 1.125rem;
 }
 h3 {
-  font-size: 1.031rem;
+  font-size: 0.7rem;
 }
 h4 {
-  font-size: 0.8rem;
+  font-size: 0.6rem;
   font-weight: 200;
   font-style: italic;
 }
@@ -110,6 +110,7 @@ h4 {
   input,
   textarea,
   select,
+  label,
   p {
     font-size: 1rem;
   }
@@ -133,8 +134,9 @@ h4 {
   input,
   textarea,
   select,
+  label,
   p {
-    font-size: 1.434rem;
+    font-size: 1.3rem;
   }
   h1 {
     font-size: 2.083rem;
@@ -146,7 +148,7 @@ h4 {
     font-size: 1.434rem;
   }
   h4 {
-    font-size: 1.434rem;
+    font-size: 1.3rem;
     font-weight: 200;
     font-style: italic;
   }
