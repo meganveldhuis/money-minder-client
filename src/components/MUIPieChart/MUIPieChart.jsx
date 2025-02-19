@@ -4,9 +4,10 @@ import { useEffect, useState } from "react";
 import APIService from "../../services/APIService";
 import LegendItem from "../LegendItem/LegendItem";
 
-function MUIPieChart({ filters }) {
+function MUIPieChart({ filters, setHighlightedItem, highlightedItem }) {
+  const [pieHighlightedItem, setPieHighlightedItem] = useState(null);
   const [data, setData] = useState([]);
-  const [selectedItem, setSelectedItem] = useState([]);
+  // const [selectedItem, setSelectedItem] = useState([]);
   const TOTAL = data.map((item) => item.value).reduce((a, b) => a + b, 0);
   const colors = [
     "#6D597A",
@@ -35,7 +36,7 @@ function MUIPieChart({ filters }) {
           color: colors[index],
         };
       });
-      console.log(parsedData);
+      console.log("parsedData", parsedData);
       setData(parsedData);
     } else {
       setData([]);
@@ -46,20 +47,34 @@ function MUIPieChart({ filters }) {
     getData();
   }, [filters]);
 
+  useEffect(() => {
+    if (pieHighlightedItem) {
+      setHighlightedItem(data[pieHighlightedItem.dataIndex]);
+    } else {
+      setHighlightedItem("");
+    }
+  }, [pieHighlightedItem]);
+
   const getArcLabel = (params) => {
     const percent = params.value / TOTAL;
     return `${params.title}: ${(percent * 100).toFixed(0)}%`;
   };
 
-  function handleClick(d) {
-    setSelectedItem(d);
-  }
+  // function handleClick(d) {
+  //   setHighLightedItem(data[d.dataIndex]);
+  //   console.log(data[d.dataIndex]);
+  // }
 
   return (
     <section className="pie-chart">
       <div className="pie-chart__legend">
         {data.map((item, index) => (
-          <LegendItem key={index} color={item.color} label={item.label} />
+          <LegendItem
+            key={index}
+            color={item.color}
+            label={item.label}
+            isHighlighted={item.label === highlightedItem.title}
+          />
         ))}
       </div>
 
@@ -77,9 +92,13 @@ function MUIPieChart({ filters }) {
             cy: "50%",
             data,
             arcLabel: getArcLabel,
+            highlightScope: { highlight: "item", fade: "global" },
           },
         ]}
-        onItemClick={(event, d) => handleClick(d)}
+        highlightedItem={pieHighlightedItem}
+        // onHighlightChange={(event, d) => setHighLightedItem(data[d.dataIndex])}
+        onHighlightChange={setPieHighlightedItem}
+        // onItemClick={(event, d) => handleClick(d)}
         sx={{
           [`& .${pieArcLabelClasses.root}`]: {
             fill: "white",

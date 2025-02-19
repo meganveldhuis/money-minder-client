@@ -3,10 +3,24 @@ import SummaryCard from "../SummaryCard/SummaryCard";
 import { useEffect, useState } from "react";
 import APIService from "../../services/APIService";
 
-function SummaryCardList() {
+function SummaryCardList({ filters, highlightedItem }) {
   const [data, setData] = useState([]);
+  // let setHighlight;
+  // if (highlightedItem) {
+  //   setHighlight = highlightedItem.title;
+  // } else {
+  //   setHighlight = "none";
+  // }
+  // console.log(setHighlight);
   async function getData() {
-    const expensesByCategoryResponse = await APIService.getExpensesByCategory();
+    const expensesByCategoryResponse = await APIService.getExpensesByCategory(
+      filters.yearFilter,
+      filters.monthFilter
+    );
+    if (!expensesByCategoryResponse) {
+      setData([]);
+      return;
+    }
     const budgetResponse = await APIService.getAllBudget();
     const mergedData = expensesByCategoryResponse.map((expense) => {
       const budget = budgetResponse.find(
@@ -17,19 +31,26 @@ function SummaryCardList() {
         budgetAmount: budget ? Number(budget.amount) : 0,
       };
     });
-    console.log(mergedData);
+    console.log("merged data: ", mergedData);
     setData(mergedData);
   }
   useEffect(() => {
     getData();
-  }, []);
+  }, [filters]);
   return (
-    <div className="summary-card-list">
-      {data &&
+    <>
+      {data ? (
         data.map((record, index) => (
-          <SummaryCard key={index} cardData={record} />
-        ))}
-    </div>
+          <SummaryCard
+            key={index}
+            cardData={record}
+            isHighlighted={highlightedItem.title === record.category_name}
+          />
+        ))
+      ) : (
+        <></>
+      )}
+    </>
   );
 }
 

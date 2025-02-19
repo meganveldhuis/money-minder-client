@@ -37,8 +37,14 @@ button {
   margin: 1rem;
   position: relative;
   top: 1.5rem;
+  background-color: $color-dark-blue;
   @include tablet {
     top: 0;
+  }
+  @include desktop {
+    max-width: 100rem;
+    margin: 0 auto;
+    padding: 3rem;
   }
 }
 

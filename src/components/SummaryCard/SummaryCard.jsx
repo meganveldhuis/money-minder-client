@@ -1,11 +1,13 @@
 import "./SummaryCard.scss";
-function SummaryCard({ cardData }) {
+function SummaryCard({ cardData, isHighlighted }) {
   const difference = cardData.budgetAmount - cardData.total;
   const stringDifference =
     difference > 0 ? `+${difference.toFixed(2)}` : difference.toFixed(2);
 
   return (
-    <div className="summary-card">
+    <div
+      className={`summary-card ${isHighlighted ? "summary-card--focus" : ""}`}
+    >
       <h3 className="summary-card__title">{cardData.category_name}</h3>
       <h2
         className={`summary-card__number ${

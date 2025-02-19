@@ -10,6 +10,7 @@ function SummaryPage() {
     monthFilter: "",
     categoryFilter: "",
   });
+  const [highlightedItem, setHighlightedItem] = useState(null);
   return (
     <div className="page-content summary-page">
       <div className="summary__header">
@@ -24,9 +25,16 @@ function SummaryPage() {
         />
       </div>
       <div className="summary__content">
-        <MUIPieChart filters={filters} />
-        <section>
-          <SummaryCardList />
+        <MUIPieChart
+          filters={filters}
+          highlightedItem={highlightedItem}
+          setHighlightedItem={setHighlightedItem}
+        />
+        <section className="summary-card-list">
+          <SummaryCardList
+            filters={filters}
+            highlightedItem={highlightedItem}
+          />
         </section>
       </div>
     </div>

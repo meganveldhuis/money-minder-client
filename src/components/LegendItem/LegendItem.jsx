@@ -1,6 +1,10 @@
-function LegendItem({ color, label }) {
+function LegendItem({ color, label, isHighlighted }) {
   return (
-    <div className="pie-chart-legend__item">
+    <div
+      className={`pie-chart-legend__item ${
+        isHighlighted ? "pie-chart-legend__item--focus" : ""
+      }`}
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="10"

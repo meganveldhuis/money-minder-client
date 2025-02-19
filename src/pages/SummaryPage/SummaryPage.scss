@@ -28,3 +28,14 @@
     }
   }
 }
+
+.summary-card-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  justify-content: space-between;
+  align-content: flex-start;
+  @include desktop {
+    margin: 2rem 0;
+  }
+}
