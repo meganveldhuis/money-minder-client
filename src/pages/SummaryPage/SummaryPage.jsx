@@ -1,8 +1,6 @@
 import "./SummaryPage.scss";
 import FilterList from "../../components/FilterList/FilterList.jsx";
 import { useState } from "react";
-import SumPieChart from "../../components/SumPieChart/SumPieChart.jsx";
-import MinimalPieChart from "../../components/MinimalPieChart/MinimalPieChart.jsx";
 import SummaryCardList from "../../components/SummaryCardList/SummaryCardList.jsx";
 import MUIPieChart from "../../components/MUIPieChart/MUIPieChart.jsx";
 
@@ -22,10 +20,9 @@ function SummaryPage() {
           filters={filters}
           setFilters={setFilters}
           includeSearch={false}
+          includeCategory={false}
         />
       </div>
-      {/* <SumPieChart filters={filters} /> */}
-      {/* <MinimalPieChart filters={filters} /> */}
       <MUIPieChart filters={filters} />
       <section>
         <SummaryCardList />

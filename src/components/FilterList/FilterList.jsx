@@ -11,6 +11,7 @@ function FilterList({
   setFilters,
   filters,
   includeSearch = true,
+  includeCategory = true,
 }) {
   const [categories, setCategories] = useState([]);
   const [years, setYears] = useState([]);
@@ -105,12 +106,18 @@ function FilterList({
             filters={filters}
             data={monthNames}
           />
-          <FilterDropdown
-            label={"category"}
-            handleFilterSelect={handleFilterSelect}
-            filters={filters}
-            data={categories}
-          />
+          {includeCategory ? (
+            <FilterDropdown
+              label={"category"}
+              handleFilterSelect={handleFilterSelect}
+              filters={filters}
+              data={categories}
+            />
+          ) : (
+            <div className="filter__cancel" onClick={(e) => handleCancel(e)}>
+              <img className="icon" src={cancelIcon} />
+            </div>
+          )}
         </div>
 
         {includeSearch ? (
@@ -133,9 +140,7 @@ function FilterList({
             </div>
           </div>
         ) : (
-          <div className="filter__cancel" onClick={(e) => handleCancel(e)}>
-            <img className="icon" src={cancelIcon} />
-          </div>
+          <></>
         )}
       </form>
     </>
