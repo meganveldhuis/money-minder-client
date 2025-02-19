@@ -14,12 +14,12 @@ function SummaryCardList({ filters, highlightedItem, reloadData }) {
       return;
     }
     const budgetResponse = await APIService.getAllBudget();
-    const mergedData = expensesByCategoryResponse.map((expense) => {
+    const mergedData = expensesByCategoryResponse.map((record) => {
       const budget = budgetResponse.find(
-        (b) => b.category_id === expense.category_id
+        (b) => b.category_id === record.category_id
       );
       return {
-        ...expense,
+        ...record,
         budgetAmount: budget ? Number(budget.amount) : 0,
       };
     });

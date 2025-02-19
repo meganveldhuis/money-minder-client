@@ -82,6 +82,16 @@ class APIService {
       console.log(`Error: Could not get all Income Records`);
     }
   }
+  async getIncomeByCategory(yearFilter = "", monthFilter = "") {
+    try {
+      const response = await axios.get(
+        `${this.baseURL}/income/category?year=${yearFilter}&month=${monthFilter}`
+      );
+      return response.data;
+    } catch (error) {
+      console.log(`Error: Could not get all Income Records by category`);
+    }
+  }
   async getSingleIncome(id) {
     try {
       const response = await axios.get(`${this.baseURL}/income/${id}`);

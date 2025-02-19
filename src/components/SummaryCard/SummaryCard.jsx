@@ -1,6 +1,11 @@
 import "./SummaryCard.scss";
 function SummaryCard({ cardData, isHighlighted }) {
-  const difference = cardData.budgetAmount - cardData.total;
+  let difference = 0;
+  if (cardData.is_income === 0) {
+    difference = cardData.budgetAmount - cardData.total;
+  } else {
+    difference = Number(cardData.total);
+  }
   const stringDifference =
     difference > 0 ? `+${difference.toFixed(2)}` : difference.toFixed(2);
 
@@ -22,7 +27,9 @@ function SummaryCard({ cardData, isHighlighted }) {
       </h2>
       <div className="summary-card__bottom">
         <div className="summary-card__bottom-left">
-          <p className="summary-card__bottom-text">budget: </p>
+          <p className="summary-card__bottom-text">
+            {cardData.is_income === 0 ? "budget" : "expected"}:
+          </p>
           <p className="summary-card__bottom-text">{cardData.budgetAmount}$ </p>
         </div>
         <div className="summary-card__bottom-right">

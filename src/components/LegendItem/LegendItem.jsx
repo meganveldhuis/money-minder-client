@@ -20,7 +20,9 @@ function LegendItem({
   return (
     <div
       className={`pie-chart-legend__item ${
-        isHighlighted ? "pie-chart-legend__item--focus" : ""
+        isHighlighted
+          ? "pie-chart-legend__item--focus"
+          : "pie-chart-legend__item--unfocused"
       }`}
       onTouchMove={onTouch}
       onClick={onTouch}

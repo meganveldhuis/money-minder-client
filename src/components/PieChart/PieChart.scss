@@ -36,6 +36,9 @@
     align-items: center;
     cursor: pointer;
     &--focus {
+      color: $color-text;
+    }
+    &--unfocused {
       color: $color-black;
     }
   }
