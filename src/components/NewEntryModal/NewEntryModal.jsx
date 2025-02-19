@@ -3,6 +3,7 @@ import "./NewEntryModal.scss";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import APIService from "../../services/APIService";
+import errorIcon from "../../assets/icons/error.svg";
 
 function NewEntryModal({ onClose }) {
   const [isIncome, setIsIncome] = useState(false);
@@ -150,182 +151,200 @@ function NewEntryModal({ onClose }) {
           </button>
           <h3>Income</h3>
         </div>
-
-        <form className="form">
-          <div className="form__item">
-            <label className="form__label" htmlFor="date">
-              Date
-            </label>
-            <DatePicker
-              className="form__input"
-              todayButton="TODAY"
-              showIcon
-              name="date"
-              id="date"
-              selected={formResponse.date}
-              onChange={(chosenDate) =>
-                setFormResponse((prevState) => {
-                  return {
-                    ...prevState,
-                    date: chosenDate,
-                  };
-                })
-              }
-            />
-            {errors.date && (
-              <div className="error__container">
-                {/* <img className="error__icon" src={errorIcon} alt="Error" /> */}
-                <p className="error__text">{errors.date}</p>
-              </div>
-            )}
-          </div>
-          <div className="form__item">
-            <label className="form__label" htmlFor="amount">
-              Amount
-            </label>
-            <input
-              className="form__input"
-              id="amount"
-              name="amount"
-              type="number"
-              onChange={(e) => handleInputChange(e)}
-              value={formResponse.amount}
-            ></input>
-            {errors.amount && (
-              <div className="error__container">
-                {/* <img className="error__icon" src={errorIcon} alt="Error" /> */}
-                <p className="error__text">{errors.amount}</p>
-              </div>
-            )}
-          </div>
-          <div className="form__item">
-            <label className="form__label" htmlFor="category_id">
-              Currency
-            </label>
-            <select
-              className="form__input"
-              id="currency_id"
-              name="currency_id"
-              onChange={(e) => handleInputChange(e)}
-              value={formResponse.currency_id}
-            >
-              {currencies.map((currency) => (
-                <option key={currency.id} value={currency.id}>
-                  {currency.id}-{currency.code}
-                </option>
-              ))}
-            </select>
-            {errors.currency_id && (
-              <div className="error__container">
-                {/* <img className="error__icon" src={errorIcon} alt="Error" /> */}
-                <p className="error__text">{errors.currency_id}</p>
-              </div>
-            )}
-          </div>
-
-          <div className="form__item">
-            <label className="form__label" htmlFor="name">
-              Name
-            </label>
-            <input
-              className="form__input"
-              id="name"
-              name="name"
-              onChange={(e) => handleInputChange(e)}
-              value={formResponse.name}
-            ></input>
-            {errors.name && (
-              <div className="error__container">
-                {/* <img className="error__icon" src={errorIcon} alt="Error" /> */}
-                <p className="error__text">{errors.name}</p>
-              </div>
-            )}
-          </div>
-
-          <div className="form__item">
-            <label className="form__label" htmlFor="category_id">
-              Category
-            </label>
-            <select
-              className="form__input"
-              id="category_id"
-              name="category_id"
-              onChange={(e) => handleInputChange(e)}
-              value={formResponse.category_id}
-            >
-              <option key={0} value={0}>
-                --Select Category--
-              </option>
-              {categories.map((category) => (
-                <option key={category.id} value={category.id}>
-                  {category.id}-{category.category_name}
-                </option>
-              ))}
-            </select>
-            {errors.category_id && (
-              <div className="error__container">
-                {/* <img className="error__icon" src={errorIcon} alt="Error" /> */}
-                <p className="error__text">{errors.category_id}</p>
-              </div>
-            )}
-          </div>
-
-          {!isIncome ? (
-            <>
+        <div className="entry-modal__form">
+          <form className="form">
+            <div className="form__item">
+              <label className="form__label" htmlFor="date">
+                Date
+              </label>
+              <DatePicker
+                className="form__input form__input--right-padding"
+                todayButton="TODAY"
+                showIcon
+                name="date"
+                id="date"
+                selected={formResponse.date}
+                onChange={(chosenDate) =>
+                  setFormResponse((prevState) => {
+                    return {
+                      ...prevState,
+                      date: chosenDate,
+                    };
+                  })
+                }
+              />
+              {errors.date && (
+                <div className="error__container">
+                  <img className="error__icon" src={errorIcon} alt="Error" />
+                  <p className="error__text">{errors.date}</p>
+                </div>
+              )}
+            </div>
+            <div className="form__row">
               <div className="form__item">
-                <label className="form__label" htmlFor="isTrip">
-                  Trip Expense?
+                <label className="form__label" htmlFor="amount">
+                  Amount
                 </label>
                 <input
-                  className="form__checkbox"
-                  type="checkbox"
-                  id="isTrip"
-                  name="isTrip"
+                  className="form__input"
+                  id="amount"
+                  name="amount"
+                  type="number"
                   onChange={(e) => handleInputChange(e)}
-                  checked={formResponse.isTrip}
+                  value={formResponse.amount}
                 ></input>
-                {errors.isTrip && (
+                {errors.amount && (
                   <div className="error__container">
-                    {/* <img className="error__icon" src={errorIcon} alt="Error" /> */}
-                    <p className="error__text">{errors.isTrip}</p>
+                    <img className="error__icon" src={errorIcon} alt="Error" />
+                    <p className="error__text">{errors.amount}</p>
                   </div>
                 )}
               </div>
-              {formResponse.isTrip && (
-                <div className="form__item">
-                  <label className="form__label" htmlFor="trip_id">
-                    Trip Name
-                  </label>
-                  <select
-                    className="form__input"
-                    id="trip_id"
-                    name="trip_id"
-                    onChange={(e) => handleInputChange(e)}
-                    value={formResponse.trip_id}
-                  >
-                    <option value=""> -- select an option -- </option>
-                    <option value="groceries">Banff</option>
-                    <option value="rent">Europe</option>
-                  </select>
-                  {errors.trip_id && (
-                    <div className="error__container">
-                      {/* <img className="error__icon" src={errorIcon} alt="Error" /> */}
-                      <p className="error__text">{errors.trip_id}</p>
-                    </div>
-                  )}
+              <div className="form__item">
+                <label className="form__label" htmlFor="category_id">
+                  Currency
+                </label>
+                <select
+                  className="form__input"
+                  id="currency_id"
+                  name="currency_id"
+                  onChange={(e) => handleInputChange(e)}
+                  value={formResponse.currency_id}
+                >
+                  {currencies.map((currency) => (
+                    <option key={currency.id} value={currency.id}>
+                      {currency.id}-{currency.code}
+                    </option>
+                  ))}
+                </select>
+                {errors.currency_id && (
+                  <div className="error__container">
+                    <img className="error__icon" src={errorIcon} alt="Error" />
+                    <p className="error__text">{errors.currency_id}</p>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            <div className="form__item">
+              <label className="form__label" htmlFor="name">
+                {isIncome ? "Income" : "Expense"} Name
+              </label>
+              <input
+                className="form__input"
+                id="name"
+                name="name"
+                onChange={(e) => handleInputChange(e)}
+                value={formResponse.name}
+              ></input>
+              {errors.name && (
+                <div className="error__container">
+                  <img className="error__icon" src={errorIcon} alt="Error" />
+                  <p className="error__text">{errors.name}</p>
                 </div>
               )}
-            </>
-          ) : (
-            <></>
-          )}
-          <button type="reset" onClick={onClose}>
-            Cancel
-          </button>
-          <button type="submit" onClick={handleSubmit}>
-            Submit
-          </button>
-        </form>
+            </div>
+
+            <div className="form__item">
+              <label className="form__label" htmlFor="category_id">
+                Category
+              </label>
+              <select
+                className="form__input"
+                id="category_id"
+                name="category_id"
+                onChange={(e) => handleInputChange(e)}
+                value={formResponse.category_id}
+              >
+                <option key={0} value={0}>
+                  --Select Category--
+                </option>
+                {categories.map((category) => (
+                  <option key={category.id} value={category.id}>
+                    {category.id}-{category.category_name}
+                  </option>
+                ))}
+              </select>
+              {errors.category_id && (
+                <div className="error__container">
+                  <img className="error__icon" src={errorIcon} alt="Error" />
+                  <p className="error__text">{errors.category_id}</p>
+                </div>
+              )}
+            </div>
+
+            <div
+              className={`form__item form__item--row ${
+                isIncome && "form__item--hidden"
+              }`}
+            >
+              <label className="form__label" htmlFor="isTrip">
+                Trip Expense?
+              </label>
+              <input
+                className="form__checkbox"
+                type="checkbox"
+                id="isTrip"
+                name="isTrip"
+                onChange={(e) => handleInputChange(e)}
+                checked={formResponse.isTrip}
+              ></input>
+              {errors.isTrip && (
+                <div className="error__container">
+                  <img className="error__icon" src={errorIcon} alt="Error" />
+                  <p className="error__text">{errors.isTrip}</p>
+                </div>
+              )}
+            </div>
+            {formResponse.isTrip && (
+              <div
+                className={`form__item form__item--row ${
+                  isIncome && "form__item--hidden"
+                }`}
+              >
+                <label className="form__label" htmlFor="trip_id">
+                  Trip Name
+                </label>
+                <select
+                  className="form__input"
+                  id="trip_id"
+                  name="trip_id"
+                  onChange={(e) => handleInputChange(e)}
+                  value={formResponse.trip_id}
+                >
+                  <option value=""> -- select an option -- </option>
+                  <option value="groceries">Banff</option>
+                  <option value="rent">Europe</option>
+                </select>
+                {errors.trip_id && (
+                  <div className="error__container">
+                    <img className="error__icon" src={errorIcon} alt="Error" />
+                    <p className="error__text">{errors.trip_id}</p>
+                  </div>
+                )}
+              </div>
+            )}
+
+            <div className="form__btns">
+              <button
+                className="form__button form__button--cancel"
+                type="reset"
+                onClick={onClose}
+              >
+                Cancel
+              </button>
+              <button
+                className={`form__button ${
+                  isIncome ? "form__button--green" : "form__button--red"
+                }`}
+                type="submit"
+                onClick={handleSubmit}
+              >
+                Submit {isIncome ? "Income" : "Expense"}
+              </button>
+            </div>
+          </form>
+        </div>
       </section>
     </div>
   );

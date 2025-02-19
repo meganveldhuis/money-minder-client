@@ -87,12 +87,12 @@ body,
 input,
 textarea,
 select,
-label,
 p {
   font-size: 0.8rem;
   font-weight: $font-weight-extra-light;
 }
-label {
+label,
+button {
   font-size: 0.8rem;
   font-weight: $font-weight-regular;
 }
@@ -117,6 +117,7 @@ h4 {
   textarea,
   select,
   label,
+  button,
   p {
     font-size: 1rem;
   }
@@ -141,6 +142,7 @@ h4 {
   textarea,
   select,
   label,
+  button,
   p {
     font-size: 1.3rem;
   }
