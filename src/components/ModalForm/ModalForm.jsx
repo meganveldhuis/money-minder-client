@@ -415,7 +415,11 @@ function ModalForm({ onClose, setReloadData, isEditing = false }) {
                 type="submit"
                 onClick={handleSubmit}
               >
-                Submit {isIncome ? "Income" : "Expense"}
+                {isEditing
+                  ? "Save"
+                  : isIncome
+                  ? "Submit Income"
+                  : "Submit Expense"}
               </button>
             </div>
           </form>

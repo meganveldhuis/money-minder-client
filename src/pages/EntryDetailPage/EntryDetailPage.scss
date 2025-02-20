@@ -1,0 +1,58 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+
+.details-page {
+  &__header {
+    text-align: center;
+    padding-bottom: 1.5rem;
+  }
+}
+
+.details {
+  &__content {
+    background-color: $color-darker-blue;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    padding-bottom: 2rem;
+    gap: 1rem;
+    border-radius: $border-radius-inputs;
+    box-shadow: 1px 1px 0.2rem $color-dark-purple;
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+  &__btn {
+    border-radius: $border-radius-inputs;
+    padding: 0.2rem;
+    width: 10%;
+    background-color: $color-darker-blue;
+    border: none;
+    &:hover {
+      //   filter: hue-rotate(25deg);
+      //   filter: brightness(90%);
+      transition: ease-in-out 0.25s;
+      box-shadow: 1px 1px 0.625rem $color-black;
+    }
+  }
+  &__item {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    background-color: $color-dark-purple;
+    padding: 0.4rem;
+    border-radius: $border-radius-inputs;
+    box-shadow: 1px 1px 0.2rem $color-black;
+  }
+  &__title {
+    padding: 0.1rem 0;
+    border-bottom: 1px solid $color-black;
+  }
+  &__row {
+    display: flex;
+    gap: 2rem;
+  }
+}

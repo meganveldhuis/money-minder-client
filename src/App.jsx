@@ -13,9 +13,6 @@ import EntryDetailPage from "./pages/EntryDetailPage/EntryDetailPage";
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [reloadData, setReloadData] = useState(true);
-  // function onNewSubmit() {
-  //   setReloadData((prev) => !prev);
-  // }
   return (
     <BrowserRouter>
       <Navbar setIsModalOpen={setIsModalOpen} />

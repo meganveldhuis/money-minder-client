@@ -1,0 +1,64 @@
+@use "../../styles/partials/mixins.scss" as *;
+@use "../../styles/partials/variables.scss" as *;
+.delete-modal-overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 1.5rem;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9;
+  background: $color-darker-blue;
+  @include tablet {
+    top: 0;
+  }
+}
+.delete-modal {
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  background-color: $color-dark-blue;
+  width: 70%;
+  padding: 1.2rem 2rem;
+  @include tablet {
+    width: 60%;
+  }
+  &__paragraph {
+    padding: 2rem 0;
+  }
+  &__text {
+    padding: 0.2rem 0;
+    font-weight: $font-weight-light;
+    &--warning {
+      padding: 1rem 0;
+      color: $color-light-pink;
+      font-weight: $font-weight-bold;
+    }
+  }
+  &__buttons {
+    display: flex;
+    gap: 1rem;
+  }
+  &__btn {
+    width: 100%;
+    border: none;
+    border-radius: $border-radius-inputs + 2rem;
+    padding: 0.4rem 0.3rem;
+    &--cancel {
+      background-color: $color-text;
+      flex: 1;
+    }
+    &--delete {
+      flex: 2;
+      background-color: $color-dark-red;
+    }
+    &:hover {
+      filter: hue-rotate(25deg);
+      filter: brightness(90%);
+      transition: ease-in-out 0.25s;
+      box-shadow: 1px 1px 0.625rem $color-black;
+    }
+  }
+}

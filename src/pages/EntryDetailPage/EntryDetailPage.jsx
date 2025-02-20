@@ -1,11 +1,17 @@
+import "./EntryDetailPage.scss";
 import EditEntryModal from "../../components/EditEntryModal/EditEntryModal";
 import { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
+import APIService from "../../services/APIService";
+import deleteIcon from "../../assets/icons/delete.svg";
+import editIcon from "../../assets/icons/edit.svg";
+import DeleteModal from "../../components/DeleteModal/DeleteModal";
 
 function EntryDetailPage() {
   const { id } = useParams();
   const { pathname } = useLocation();
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [reloadData, setReloadData] = useState(true);
   const [data, setData] = useState([]);
   const [isIncome, setIsIncome] = useState(false);
@@ -13,24 +19,70 @@ function EntryDetailPage() {
   useEffect(() => {
     setIsIncome(pathname.includes("/income"));
   }, []);
+
   useEffect(() => {
     async function getRecord() {
-      const data = isIncome
+      const responseData = isIncome
         ? await APIService.getSingleIncome(id)
         : await APIService.getSingleExpense(id);
-
-      const isTripData = data.trip_id !== null;
-      setData(data);
+      console.log(responseData);
+      setData(responseData);
     }
-  }, []);
+    getRecord();
+  }, [reloadData]);
 
   return (
     <div className="page-content details-page">
-      <h1>{isIncome ? "Income" : "Expense"} Details</h1>
-      <div>
-        <div>
-          <button onClick={() => setIsEditModalOpen(true)}>EDIT</button>
-          <button>DELETE</button>
+      <h1 className="details-page__header">
+        {isIncome ? "Income" : "Expense"} Details
+      </h1>
+      <div className="details">
+        <div className="details__content">
+          <div className="details__buttons">
+            <button
+              className="details__btn details__btn--edit"
+              onClick={() => setIsEditModalOpen(true)}
+            >
+              <img src={editIcon} />
+            </button>
+            <button
+              className="details__btn details__btn--delete"
+              onClick={() => setIsDeleteModalOpen(true)}
+            >
+              <img src={deleteIcon} />
+            </button>
+          </div>
+          <div className="details__item">
+            <h4 className="details__title">Name:</h4>
+            <p className="details__text">{data.name}</p>
+          </div>
+          <div className="details__item">
+            <h4 className="details__title">Date:</h4>
+            <p className="details__text">
+              {String(new Date(data.date).toLocaleDateString())}
+            </p>
+          </div>
+          <div className="details__row">
+            <div className="details__item">
+              <h4 className="details__title">
+                {isIncome ? "Amount" : "Spent"}:
+              </h4>
+              <p className="details__text">{data.amount}</p>
+              <p className="details__text">{data.currency_code}</p>
+            </div>
+          </div>
+          <div className="details__item">
+            <h4 className="details__title">Category:</h4>
+            <p className="details__text">{data.category_name}</p>
+          </div>
+          <div className="details__item">
+            <h4 className="details__title">Created at:</h4>
+            <p className="details__text">{String(new Date(data.created_at))}</p>
+          </div>
+          <div className="details__item">
+            <h4 className="details__title">Updated at:</h4>
+            <p className="details__text">{String(new Date(data.updated_at))}</p>
+          </div>
         </div>
       </div>
 
@@ -38,6 +90,13 @@ function EntryDetailPage() {
         <EditEntryModal
           setReloadData={setReloadData}
           onClose={() => setIsEditModalOpen(false)}
+        />
+      )}
+      {isDeleteModalOpen && (
+        <DeleteModal
+          isIncome={isIncome}
+          details={data}
+          onClose={() => setIsDeleteModalOpen(false)}
         />
       )}
     </div>
