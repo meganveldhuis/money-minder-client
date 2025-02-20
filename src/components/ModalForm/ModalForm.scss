@@ -41,29 +41,39 @@
 }
 
 .form {
-  height: 30rem;
+  // height: 30rem;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
   position: relative;
-  @include desktop {
-    height: 32rem;
-  }
+  // @include desktop {
+  //   height: 32rem;
+  // }
   &__row {
     display: flex;
     flex-direction: row;
     gap: 1rem;
+    width: 100%;
+    flex-wrap: wrap;
   }
   &__item {
     display: flex;
     flex-direction: column;
     gap: 0.4rem;
+    flex: 1;
     &--row {
       flex-direction: row;
       align-items: center;
     }
+    &--mobile {
+      display: none;
+    }
     &--hidden {
       visibility: hidden;
+    }
+    &--more-width {
+      flex: 2;
+      width: 100%;
     }
   }
   &__input,
@@ -89,8 +99,8 @@
     width: 0px;
   }
   &__btns {
-    position: absolute;
-    bottom: 0px;
+    // position: absolute;
+    // bottom: 0px;
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -124,6 +134,11 @@
       flex: 1;
     }
   }
+}
+.react-datepicker__view-calendar-icon input {
+  padding: 6px 10px 5px 30px;
+  width: 100%;
+  min-width: 8.875rem;
 }
 
 .error {

@@ -198,7 +198,7 @@ function ModalForm({ onClose, setReloadData, isEditing = false }) {
         </div>
         <div className="entry-modal__form">
           <form className="form">
-            <div className="form__item">
+            <div className="form__item form__item--mobile">
               <label className="form__label" htmlFor="date">
                 Date
               </label>
@@ -226,6 +226,33 @@ function ModalForm({ onClose, setReloadData, isEditing = false }) {
               )}
             </div>
             <div className="form__row">
+              <div className="form__item form__item--desktop">
+                <label className="form__label" htmlFor="date">
+                  Date
+                </label>
+                <DatePicker
+                  className="form__input form__input--more-width"
+                  todayButton="TODAY"
+                  showIcon
+                  name="date"
+                  id="date"
+                  selected={formResponse.date}
+                  onChange={(chosenDate) =>
+                    setFormResponse((prevState) => {
+                      return {
+                        ...prevState,
+                        date: chosenDate,
+                      };
+                    })
+                  }
+                />
+                {errors.date && (
+                  <div className="error__container">
+                    <img className="error__icon" src={errorIcon} alt="Error" />
+                    <p className="error__text">{errors.date}</p>
+                  </div>
+                )}
+              </div>
               <div className="form__item">
                 <label className="form__label" htmlFor="amount">
                   Amount
