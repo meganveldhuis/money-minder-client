@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useParams, useLocation } from "react-router-dom";
 // import "./NewEntryModal.scss";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -6,7 +7,10 @@ import APIService from "../../services/APIService";
 import errorIcon from "../../assets/icons/error.svg";
 
 function ModalForm({ onClose, setReloadData, isEditing = false }) {
+  const { id } = useParams();
+  const { pathname } = useLocation();
   const [isIncome, setIsIncome] = useState(false);
+
   const [categories, setCategories] = useState([]);
   const [currencies, setCurrencies] = useState([]);
   const [trips, setTrips] = useState([]);
@@ -44,14 +48,37 @@ function ModalForm({ onClose, setReloadData, isEditing = false }) {
   }, [isIncome]);
 
   useEffect(() => {
+    setIsIncome(pathname.includes("/income"));
+  }, []);
+
+  useEffect(() => {
     async function getCurrencies() {
       const data = await APIService.getAllCurrency();
       if (data) {
         setCurrencies(data);
       }
     }
+    async function getRecord() {
+      const data = isIncome
+        ? await APIService.getSingleIncome(id)
+        : await APIService.getSingleExpense(id);
+
+      const isTripData = data.trip_id !== null;
+      setFormResponse({
+        date: data.date,
+        amount: data.amount,
+        currency_id: data.currency_id,
+        category_id: data.category_id,
+        name: data.name,
+        isTrip: isTripData,
+        trip_id: isTripData ? data.trip_id : 0,
+      });
+    }
 
     getCurrencies();
+    if (isEditing) {
+      getRecord();
+    }
   }, []);
 
   useEffect(() => {
@@ -66,11 +93,9 @@ function ModalForm({ onClose, setReloadData, isEditing = false }) {
   }, []);
 
   function validateForm() {
-    let newErrors = {};
+    const newErrors = {};
     if (!formResponse.date) newErrors.date = "Date is required";
-
     if (!formResponse.amount) newErrors.amount = "Amount is required";
-
     if (isIncome) {
       setFormResponse((prevState) => {
         return {
@@ -81,13 +106,10 @@ function ModalForm({ onClose, setReloadData, isEditing = false }) {
     } else {
       if (!formResponse.name.trim()) newErrors.name = "Name is required";
     }
-
     if (!formResponse.category_id)
       newErrors.category_id = "Category is required";
-
     if (!formResponse.currency_id)
       newErrors.currency_id = "Currency is required";
-
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   }
@@ -131,30 +153,15 @@ function ModalForm({ onClose, setReloadData, isEditing = false }) {
     }
   }
 
-  async function addEntry(newEntry) {
-    if (isIncome) {
-      const response = await APIService.postIncome(newEntry);
-      if (response) {
-        return true;
-      }
-    } else {
-      const response = await APIService.postExpense(newEntry);
-      if (response) {
-        return true;
-      }
-    }
-    return false;
-  }
-
   async function handleSubmit(e) {
     e.preventDefault();
     if (!validateForm()) return;
     let response = [];
     if (isEditing) {
       if (isIncome) {
-        response = await APIService.editIncome(formResponse);
+        response = await APIService.editIncome(formResponse, id);
       } else {
-        response = await APIService.editExpense(formResponse);
+        response = await APIService.editExpense(formResponse, id);
       }
     } else {
       if (isIncome) {
@@ -177,12 +184,17 @@ function ModalForm({ onClose, setReloadData, isEditing = false }) {
         </h2>
         <div className="entry-modal__toggle-div">
           <h3>Expense</h3>
-          <button
-            className={`toggle-btn ${isIncome ? "toggled" : ""}`}
-            onClick={() => setIsIncome((prev) => !prev)}
-          >
-            <div className="thumb"></div>
-          </button>
+          {!isEditing && (
+            <button
+              className={`toggle-btn ${isIncome ? "toggled" : ""} ${
+                isEditing ? "toggle-btn--disabled" : ""
+              }`}
+              onClick={() => setIsIncome((prev) => !prev)}
+            >
+              <div className="thumb"></div>
+            </button>
+          )}
+
           <h3>Income</h3>
         </div>
         <div className="entry-modal__form">

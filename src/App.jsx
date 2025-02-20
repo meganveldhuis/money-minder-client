@@ -8,6 +8,7 @@ import ExpensesPage from "./pages/ExpensesPage/ExpensesPage";
 import IncomePage from "./pages/IncomePage/IncomePage";
 import BudgetPage from "./pages/BudgetPage/BudgetPage";
 import { useState } from "react";
+import EntryDetailPage from "./pages/EntryDetailPage/EntryDetailPage";
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -34,8 +35,16 @@ function App() {
           element={<ExpensesPage reloadData={reloadData} />}
         />
         <Route
+          path="/expenses/:id"
+          element={<EntryDetailPage reloadData={reloadData} />}
+        />
+        <Route
           path="/income"
           element={<IncomePage reloadData={reloadData} />}
+        />
+        <Route
+          path="/income/:id"
+          element={<EntryDetailPage reloadData={reloadData} />}
         />
         <Route
           path="/budget"

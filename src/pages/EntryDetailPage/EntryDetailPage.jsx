@@ -7,9 +7,7 @@ function EntryDetailPage() {
 
   return (
     <div>
-      <button className="add-button" onClick={() => setIsModalOpen(true)}>
-        open modal
-      </button>
+      <button onClick={() => setIsModalOpen(true)}>open modal</button>
       {isModalOpen && (
         <EditEntryModal
           setReloadData={setReloadData}
