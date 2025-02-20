@@ -1,11 +1,12 @@
 import "./EntryDetailPage.scss";
 import EditEntryModal from "../../components/EditEntryModal/EditEntryModal";
 import { useEffect, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useParams, useNavigate } from "react-router-dom";
 import APIService from "../../services/APIService";
 import deleteIcon from "../../assets/icons/delete.svg";
 import editIcon from "../../assets/icons/edit.svg";
 import DeleteModal from "../../components/DeleteModal/DeleteModal";
+import leftArrowIcon from "../../assets/icons/left-arrow.svg";
 
 function EntryDetailPage() {
   const { id } = useParams();
@@ -15,6 +16,7 @@ function EntryDetailPage() {
   const [reloadData, setReloadData] = useState(true);
   const [data, setData] = useState([]);
   const [isIncome, setIsIncome] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setIsIncome(pathname.includes("/income"));
@@ -22,7 +24,7 @@ function EntryDetailPage() {
 
   useEffect(() => {
     async function getRecord() {
-      const responseData = isIncome
+      const responseData = pathname.includes("/income")
         ? await APIService.getSingleIncome(id)
         : await APIService.getSingleExpense(id);
       console.log(responseData);
@@ -33,10 +35,19 @@ function EntryDetailPage() {
 
   return (
     <div className="page-content details-page">
-      <h1 className="details-page__header">
-        {isIncome ? "Income" : "Expense"} Details
-      </h1>
+      <div className="details-page__header">
+        <img
+          className="details-page__header-icon icon"
+          src={leftArrowIcon}
+          onClick={() => navigate(-1)}
+        />
+        <h1 className="details-page__header-text">
+          {isIncome ? "Income" : "Expense"} Details
+        </h1>
+      </div>
+
       <div className="details">
+        <div className="details__image"></div>
         <div className="details__content">
           <div className="details__buttons">
             <button
@@ -68,7 +79,10 @@ function EntryDetailPage() {
                 {isIncome ? "Amount" : "Spent"}:
               </h4>
               <p className="details__text">{data.amount}</p>
-              <p className="details__text">{data.currency_code}</p>
+              <p className="details__text">
+                {data.currency_code}
+                {data.code}
+              </p>
             </div>
           </div>
           <div className="details__item">

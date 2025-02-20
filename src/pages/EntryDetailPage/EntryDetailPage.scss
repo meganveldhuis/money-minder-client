@@ -3,13 +3,32 @@
 
 .details-page {
   &__header {
-    text-align: center;
+    position: relative;
+    padding-top: 1rem;
     padding-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+  &__header-icon {
+    position: absolute;
+    left: 1rem;
+    cursor: pointer;
+    padding: 0.2rem;
+    &:hover {
+      filter: invert(20%);
+      transition: ease-in-out 0.25s;
+    }
   }
 }
 
 .details {
+  display: flex;
+  flex-direction: row;
+
   &__content {
+    width: 100%;
     background-color: $color-darker-blue;
     display: flex;
     flex-direction: column;
@@ -31,8 +50,6 @@
     background-color: $color-darker-blue;
     border: none;
     &:hover {
-      //   filter: hue-rotate(25deg);
-      //   filter: brightness(90%);
       transition: ease-in-out 0.25s;
       box-shadow: 1px 1px 0.625rem $color-black;
     }

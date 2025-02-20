@@ -59,7 +59,7 @@ function ModalForm({ onClose, setReloadData, isEditing = false }) {
       }
     }
     async function getRecord() {
-      const data = isIncome
+      const data = pathname.includes("/income")
         ? await APIService.getSingleIncome(id)
         : await APIService.getSingleExpense(id);
 

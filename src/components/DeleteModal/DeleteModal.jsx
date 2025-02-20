@@ -21,11 +21,18 @@ function DeleteModal({ onClose, isIncome, details }) {
           Delete {isIncome ? "Income Record" : "Expense Record"}?
         </h2>
         <div className="delete-modal__paragraph">
-          <p className="delete-modal__text">name: {details.name}</p>
           <p className="delete-modal__text">
-            category: {details.category_name}
+            <span className="delete-modal__text--italic">name: </span>
+            {details.name}
           </p>
-          <p className="delete-modal__text">amount: {details.amount}</p>
+          <p className="delete-modal__text">
+            <span className="delete-modal__text--italic">category: </span>
+            {details.category_name}
+          </p>
+          <p className="delete-modal__text">
+            <span className="delete-modal__text--italic">amount: </span>
+            {details.amount}
+          </p>
           <p className="delete-modal__text delete-modal__text--warning">
             NOTE: THIS CANNOT BE UNDONE
           </p>
