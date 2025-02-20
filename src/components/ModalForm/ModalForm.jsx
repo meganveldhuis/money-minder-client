@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, useLocation } from "react-router-dom";
-// import "./NewEntryModal.scss";
+import "./ModalForm.scss";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import APIService from "../../services/APIService";
@@ -184,16 +184,15 @@ function ModalForm({ onClose, setReloadData, isEditing = false }) {
         </h2>
         <div className="entry-modal__toggle-div">
           <h3>Expense</h3>
-          {!isEditing && (
-            <button
-              className={`toggle-btn ${isIncome ? "toggled" : ""} ${
-                isEditing ? "toggle-btn--disabled" : ""
-              }`}
-              onClick={() => setIsIncome((prev) => !prev)}
-            >
-              <div className="thumb"></div>
-            </button>
-          )}
+          <button
+            className={`toggle-btn ${isIncome ? "toggle-btn--toggled" : ""} ${
+              isEditing ? "toggle-btn--disabled" : ""
+            } `}
+            disabled={isEditing ? true : false}
+            onClick={() => setIsIncome((prev) => !prev)}
+          >
+            <div className="toggle-btn__thumb"></div>
+          </button>
 
           <h3>Income</h3>
         </div>
