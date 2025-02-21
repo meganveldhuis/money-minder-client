@@ -31,13 +31,11 @@ function SummaryPage({ reloadData }) {
           setHighlightedItem={setHighlightedItem}
           reloadData={reloadData}
         />
-        <section className="summary-card-list">
-          <SummaryCardList
-            filters={filters}
-            highlightedItem={highlightedItem}
-            reloadData={reloadData}
-          />
-        </section>
+        <SummaryCardList
+          filters={filters}
+          highlightedItem={highlightedItem}
+          reloadData={reloadData}
+        />
       </div>
     </div>
   );

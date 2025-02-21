@@ -1,0 +1,14 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+.summary-card-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  justify-content: space-between;
+  align-content: flex-start;
+  width: 100%;
+  @include desktop {
+    margin: 2rem 0;
+    width: 75%;
+  }
+}

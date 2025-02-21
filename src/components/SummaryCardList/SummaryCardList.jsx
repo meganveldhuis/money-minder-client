@@ -1,3 +1,4 @@
+import "./SummaryCardList.scss";
 import SummaryCard from "../SummaryCard/SummaryCard";
 import { useEffect, useState } from "react";
 import APIService from "../../services/APIService";
@@ -36,7 +37,7 @@ function SummaryCardList({
   }, [filters, reloadData]);
 
   return (
-    <>
+    <section className="summary-card-list">
       {data ? (
         data.map((record, index) => (
           <SummaryCard
@@ -48,7 +49,7 @@ function SummaryCardList({
       ) : (
         <></>
       )}
-    </>
+    </section>
   );
 }
 
