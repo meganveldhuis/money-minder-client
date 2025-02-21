@@ -117,6 +117,10 @@ function EntryDetailPage() {
             )}
           </div>
           <div className="details__item">
+            <h4 className="details__title">Trip:</h4>
+            <p className="details__text">{data.trip_name}</p>
+          </div>
+          <div className="details__item">
             <h4 className="details__title">Category:</h4>
             <p className="details__text">{data.category_name}</p>
           </div>
