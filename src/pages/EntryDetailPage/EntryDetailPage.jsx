@@ -16,11 +16,27 @@ function EntryDetailPage() {
   const [reloadData, setReloadData] = useState(true);
   const [data, setData] = useState([]);
   const [isIncome, setIsIncome] = useState(false);
+  const [photoDetails, setPhotoDetails] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
     setIsIncome(pathname.includes("/income"));
   }, []);
+
+  useEffect(() => {
+    async function getPhoto() {
+      const searchTerm = data.name;
+      const photoResponse = await APIService.getPhoto(searchTerm);
+      setPhotoDetails({
+        alt_description: photoResponse.alt_description,
+        url: photoResponse.urls.regular,
+        credit: photoResponse.user.name,
+      });
+    }
+    if (data) {
+      getPhoto();
+    }
+  }, [data]);
 
   useEffect(() => {
     async function getRecord() {
@@ -47,7 +63,16 @@ function EntryDetailPage() {
       </div>
 
       <div className="details">
-        <div className="details__image"></div>
+        {photoDetails.url && (
+          <div className="details__image-div">
+            <img
+              className="details__img"
+              src={photoDetails.url}
+              alt={`${photoDetails.alt_description}. Photo by ${photoDetails.credit}`}
+            />
+          </div>
+        )}
+
         <div className="details__content">
           <div className="details__buttons">
             <button
@@ -99,6 +124,9 @@ function EntryDetailPage() {
           </div>
         </div>
       </div>
+      {photoDetails.credit && (
+        <p className="details__image-credit">Photo by {photoDetails.credit}</p>
+      )}
 
       {isEditModalOpen && (
         <EditEntryModal
