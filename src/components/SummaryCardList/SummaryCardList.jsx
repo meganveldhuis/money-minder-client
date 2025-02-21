@@ -2,8 +2,13 @@ import SummaryCard from "../SummaryCard/SummaryCard";
 import { useEffect, useState } from "react";
 import APIService from "../../services/APIService";
 
-function SummaryCardList({ filters, highlightedItem, reloadData }) {
+function SummaryCardList({
+  filters,
+  highlightedItem = { title: "" },
+  reloadData,
+}) {
   const [data, setData] = useState([]);
+
   async function getData() {
     const expensesByCategoryResponse = await APIService.getExpensesByCategory(
       filters.yearFilter,
@@ -29,6 +34,7 @@ function SummaryCardList({ filters, highlightedItem, reloadData }) {
   useEffect(() => {
     getData();
   }, [filters, reloadData]);
+
   return (
     <>
       {data ? (

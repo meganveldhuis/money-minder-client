@@ -141,7 +141,7 @@ class APIService {
   /* ------------------------------- CATEGORIES ------------------------------- */
   async getAllCategories() {
     try {
-      const response = await axios.get(`${this.baseURL}/`);
+      const response = await axios.get(`${this.baseURL}/categories`);
       return response.data;
     } catch (error) {
       console.log(`Error: Could not get all Categories`);
