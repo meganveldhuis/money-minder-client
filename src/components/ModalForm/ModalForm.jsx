@@ -96,15 +96,20 @@ function ModalForm({ onClose, setReloadData, isEditing = false }) {
     const newErrors = {};
     if (!formResponse.date) newErrors.date = "Date is required";
     if (!formResponse.amount) newErrors.amount = "Amount is required";
-    if (isIncome) {
+    if (!isIncome) {
+      if (!formResponse.name.trim()) newErrors.name = "Name is required";
+    }
+    if (formResponse.isTrip) {
+      if (!formResponse.trip_id) {
+        newErrors.trip_id = "Trip is required";
+      }
+    } else {
       setFormResponse((prevState) => {
         return {
           ...prevState,
-          name: "",
+          trip_id: 0,
         };
       });
-    } else {
-      if (!formResponse.name.trim()) newErrors.name = "Name is required";
     }
     if (!formResponse.category_id)
       newErrors.category_id = "Category is required";
@@ -150,6 +155,14 @@ function ModalForm({ onClose, setReloadData, isEditing = false }) {
           };
         });
       }
+    }
+    if (name === "isTrip" && checked === false) {
+      setFormResponse((prevState) => {
+        return {
+          ...prevState,
+          trip_id: 0,
+        };
+      });
     }
   }
 

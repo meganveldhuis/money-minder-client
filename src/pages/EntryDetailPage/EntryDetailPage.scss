@@ -2,7 +2,7 @@
 @use "../../styles/partials/variables" as *;
 
 .details-page {
-  margin: 0;
+  margin: 0 auto;
 
   position: relative;
   overflow: hidden;
@@ -49,11 +49,10 @@
     overflow: hidden;
   }
   &__img {
-    width: 100vw;
-    height: 100vh;
+    filter: grayscale(100%);
     @include tablet {
       // width: 100vw;
-      height: 100%;
+      // height: 100%;
     }
   }
   &__content {
