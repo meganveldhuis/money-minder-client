@@ -12,6 +12,8 @@ function FilterList({
   filters,
   includeSearch = true,
   includeCategory = true,
+  includeAddBtn = false,
+  handleAddBudgetClick,
 }) {
   const [categories, setCategories] = useState([]);
   const [years, setYears] = useState([]);
@@ -94,6 +96,10 @@ function FilterList({
     <>
       <form className="filter">
         <div className="filter__top">
+          {includeAddBtn && (
+            <button onClick={handleAddBudgetClick}>Add Budget</button>
+          )}
+
           <FilterDropdown
             label={"year"}
             handleFilterSelect={handleFilterSelect}
