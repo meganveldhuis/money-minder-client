@@ -1,4 +1,5 @@
 import "./SummaryCard.scss";
+import ProgressBar from "../ProgressBar/ProgressBar";
 function SummaryCard({ cardData, isHighlighted }) {
   const difference =
     cardData.is_income === 0
@@ -23,16 +24,20 @@ function SummaryCard({ cardData, isHighlighted }) {
       >
         {stringDifference}$
       </h2>
+      <ProgressBar
+        actualAmt={cardData.total}
+        budgetAmt={cardData.budgetAmount}
+      />
       <div className="summary-card__bottom">
         <div className="summary-card__bottom-left">
+          <p className="summary-card__bottom-text">actual: </p>
+          <p className="summary-card__bottom-text">{cardData.total}$ </p>
+        </div>
+        <div className="summary-card__bottom-right">
           <p className="summary-card__bottom-text">
             {cardData.is_income === 0 ? "budget" : "expected"}:
           </p>
           <p className="summary-card__bottom-text">{cardData.budgetAmount}$ </p>
-        </div>
-        <div className="summary-card__bottom-right">
-          <p className="summary-card__bottom-text">actual: </p>
-          <p className="summary-card__bottom-text">{cardData.total}$ </p>
         </div>
       </div>
     </div>

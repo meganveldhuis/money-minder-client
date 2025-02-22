@@ -88,7 +88,6 @@ function SumPieChart({
           />
         ))}
       </div>
-
       <PieChart
         className="pie-chart__chart"
         series={[

@@ -24,6 +24,7 @@ function SummaryPage({ reloadData }) {
           includeCategory={false}
         />
       </div>
+      <h2 className="summary__expenses-header">Expenses To Date</h2>
       <div className="summary__content">
         <PieChart
           filters={filters}
