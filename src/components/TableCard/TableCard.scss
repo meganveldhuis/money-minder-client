@@ -4,6 +4,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   background-color: $color-darker-blue;
   padding: 1rem;
   box-shadow: 0px 4px 4px rgba(black, 0.2);
@@ -24,6 +25,35 @@
       justify-content: space-around;
     }
   }
+
+  &__chip {
+    display: flex;
+    border-radius: 10px;
+    box-shadow: 4px 4px 10px rgba(black, 0.6);
+    font-size: 0.5rem;
+    width: fit-content;
+    align-items: center;
+    padding: 5px 8px;
+    border-radius: 3rem;
+    gap: 0.2rem;
+    background-color: $color-dark-orange;
+    color: $color-black;
+    &--green {
+      background-color: $color-dark-green;
+    }
+    &--rose {
+      background-color: $color-dark-rose;
+    }
+    &--red {
+      background-color: $color-dark-red;
+    }
+  }
+  &__text {
+    &--bold {
+      font-weight: $font-weight-regular;
+    }
+  }
+
   &__icon {
     width: 12px;
   }
