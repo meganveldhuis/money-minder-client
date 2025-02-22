@@ -27,13 +27,15 @@ function EntryDetailPage() {
     async function getPhoto() {
       const searchTerm = data.name;
       const photoResponse = await APIService.getPhoto(searchTerm);
-      setPhotoDetails({
-        alt_description: photoResponse.alt_description,
-        url: photoResponse.urls.regular,
-        credit: photoResponse.user.name,
-      });
+      if (photoResponse) {
+        setPhotoDetails({
+          alt_description: photoResponse.alt_description,
+          url: photoResponse.urls.regular,
+          credit: photoResponse.user.name,
+        });
+      }
     }
-    if (data) {
+    if (data.name) {
       getPhoto();
     }
   }, [data]);
@@ -47,6 +49,7 @@ function EntryDetailPage() {
       setData(responseData);
     }
     getRecord();
+    console.log(data);
   }, [reloadData]);
 
   return (
@@ -109,16 +112,14 @@ function EntryDetailPage() {
                 {data.code}
               </p>
             </div>
-            {data.trip_name && (
-              <div className="details__item">
+            {data.trip_name ? (
+              <div className="details__item details__item--tablet">
                 <h4 className="details__title">Trip:</h4>
                 <p className="details__text">{data.trip_name}</p>
               </div>
+            ) : (
+              <></>
             )}
-          </div>
-          <div className="details__item">
-            <h4 className="details__title">Trip:</h4>
-            <p className="details__text">{data.trip_name}</p>
           </div>
           <div className="details__item">
             <h4 className="details__title">Category:</h4>
