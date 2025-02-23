@@ -201,9 +201,17 @@ class APIService {
     }
   }
   async addBudgetAndCategory(newBudget) {
-    // try{
-    //   const response
-    // }
+    try {
+      const response = await axios.put(
+        `${this.baseURL}/budget/category`,
+        newBudget
+      );
+      return response.data;
+    } catch (error) {
+      console.log(
+        `Error: Could not add budget line with category name ${newBudget.category_name}`
+      );
+    }
   }
 
   /* ------------------------------- CURRENCIES ------------------------------- */

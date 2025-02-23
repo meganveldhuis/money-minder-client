@@ -56,19 +56,6 @@ function AddBudgetModal({ onClose, reloadData, setReloadData }) {
     if (!validateForm()) return;
     let response = [];
     response = await APIService.addBudgetAndCategory(formResponse);
-    // if (isEditing) {
-    //   if (isIncome) {
-    //     response = await APIService.editIncome(formResponse, id);
-    //   } else {
-    //     response = await APIService.editExpense(formResponse, id);
-    //   }
-    // } else {
-    // if (isIncome) {
-    //   response = await APIService.postIncome(formResponse);
-    // } else {
-    //   response = await APIService.postExpense(formResponse);
-    // }
-    // }
     if (response) {
       setReloadData((prev) => !prev);
       onClose();

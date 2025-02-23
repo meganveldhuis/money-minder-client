@@ -1,7 +1,7 @@
-import SummaryCardList from "../../components/SummaryCardList/SummaryCardList";
-import FilterList from "../../components/FilterList/FilterList";
+import "./BudgetPage.scss";
 import { useState } from "react";
 import BudgetModal from "../../components/BudgetModal/BudgetModal";
+import BudgetCardList from "../../components/BudgetCardList/BudgetCardList";
 
 function BudgetPage() {
   const [reloadData, setReloadData] = useState(true);
@@ -14,17 +14,10 @@ function BudgetPage() {
 
   return (
     <div className="page-content budget-page">
-      <FilterList
-        isAll={true}
-        isIncome={false}
-        setFilters={setFilters}
-        filters={filters}
-        includeCategory={false}
-        includeSearch={false}
-        includeAddBtn={true}
-        handleAddBudgetClick={handleAddBudgetClick}
-      />
-      <SummaryCardList filters={filters} reloadData={reloadData} />
+      <button onClick={handleAddBudgetClick} className="budget-page__btn">
+        Add Budget
+      </button>
+      <BudgetCardList filters={filters} reloadData={reloadData} />
       {isAddBudgetModalOpen && (
         <BudgetModal
           reloadData={reloadData}

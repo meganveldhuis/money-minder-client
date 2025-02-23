@@ -1,6 +1,6 @@
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/variables" as *;
-.summary-card-list {
+.budget-card-list {
   display: flex;
   flex-wrap: wrap;
   gap: 0.6rem;
@@ -9,5 +9,6 @@
   width: 100%;
   @include desktop {
     margin: 2rem 0;
+    width: 75%;
   }
 }

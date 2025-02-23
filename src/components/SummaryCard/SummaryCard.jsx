@@ -1,5 +1,6 @@
 import "./SummaryCard.scss";
 import ProgressBar from "../ProgressBar/ProgressBar";
+
 function SummaryCard({ cardData, isHighlighted }) {
   const difference =
     cardData.is_income === 0
