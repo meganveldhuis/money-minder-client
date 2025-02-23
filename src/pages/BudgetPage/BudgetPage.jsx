@@ -1,7 +1,7 @@
 import SummaryCardList from "../../components/SummaryCardList/SummaryCardList";
 import FilterList from "../../components/FilterList/FilterList";
 import { useState } from "react";
-import AddBudgetModal from "../../components/AddBudgetModal/AddBudgetModal";
+import BudgetModal from "../../components/BudgetModal/BudgetModal";
 
 function BudgetPage({ reloadData }) {
   const [filters, setFilters] = useState([]);
@@ -25,7 +25,7 @@ function BudgetPage({ reloadData }) {
       />
       <SummaryCardList filters={filters} reloadData={reloadData} />
       {isAddBudgetModalOpen && (
-        <AddBudgetModal
+        <BudgetModal
           reloadData={reloadData}
           onClose={() => setIsAddBudgetModalOpen(false)}
         />

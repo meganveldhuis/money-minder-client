@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import APIService from "../../services/APIService";
+import "./BudgetModal.scss";
 
-import "./AddBudgetModal.scss";
 function AddBudgetModal({ onClose, reloadData }) {
   const [errors, setErrors] = useState({});
-  const [categories, setCategories] = useState([]);
+  // const [categories, setCategories] = useState([]);
   const [formResponse, setFormResponse] = useState({
     note: "",
     amount: 0,
@@ -14,16 +14,16 @@ function AddBudgetModal({ onClose, reloadData }) {
     is_per_year: false,
   });
 
-  useEffect(() => {
-    async function getCategories() {
-      const data = await APIService.getAllCategories();
-      if (data) {
-        setCategories(data);
-      }
-    }
+  // useEffect(() => {
+  //   async function getCategories() {
+  //     const data = await APIService.getAllCategories();
+  //     if (data) {
+  //       setCategories(data);
+  //     }
+  //   }
 
-    getCategories();
-  }, []);
+  //   getCategories();
+  // }, []);
   function handleOverlayClick(e) {
     if (e.target.className === "add-budget-modal-overlay") {
       onClose();
@@ -115,22 +115,7 @@ function AddBudgetModal({ onClose, reloadData }) {
             <label className="form__label" htmlFor="category_id">
               Category
             </label>
-            <select
-              className="form__input"
-              id="category_id"
-              name="category_id"
-              onChange={(e) => handleInputChange(e)}
-              value={formResponse.category_id}
-            >
-              <option key={0} value={0}>
-                --Select Category--
-              </option>
-              {categories.map((category) => (
-                <option key={category.id} value={category.id}>
-                  {category.category_name}
-                </option>
-              ))}
-            </select>
+            <input type="text"></input>
             {errors.category_id && (
               <div className="error__container">
                 <img className="error__icon" src={errorIcon} alt="Error" />

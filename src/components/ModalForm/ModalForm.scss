@@ -65,8 +65,16 @@
       flex-direction: row;
       align-items: center;
     }
-    &--mobile {
+    &--tablet {
       display: none;
+    }
+    @include tablet {
+      &--mobile {
+        display: none;
+      }
+      &--tablet {
+        display: flex;
+      }
     }
     &--hidden {
       visibility: hidden;
