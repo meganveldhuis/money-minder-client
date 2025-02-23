@@ -11,11 +11,13 @@ function SummaryPage({ reloadData }) {
     categoryFilter: "",
   });
   const [highlightedItem, setHighlightedItem] = useState(null);
+  const [numberOfYearsRecorded, setNumberOfYearsRecorded] = useState(1);
   return (
     <div className="page-content summary-page">
       <div className="summary__header">
         <h1 className="summary__main-title">Summary</h1>
         <FilterList
+          setNumberOfYearsRecorded={setNumberOfYearsRecorded}
           isAll={false}
           isIncome={false}
           filters={filters}
@@ -33,6 +35,7 @@ function SummaryPage({ reloadData }) {
           reloadData={reloadData}
         />
         <SummaryCardList
+          numberOfYearsRecorded={numberOfYearsRecorded}
           filters={filters}
           highlightedItem={highlightedItem}
           reloadData={reloadData}

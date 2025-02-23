@@ -12,6 +12,7 @@ function FilterList({
   filters,
   includeSearch = true,
   includeCategory = true,
+  setNumberOfYearsRecorded,
 }) {
   const [categories, setCategories] = useState([]);
   const [years, setYears] = useState([]);
@@ -47,6 +48,7 @@ function FilterList({
 
     async function getYears() {
       const data = await APIService.getAllYears();
+      setNumberOfYearsRecorded(data.length);
       setYears(data);
     }
 

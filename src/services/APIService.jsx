@@ -185,6 +185,7 @@ class APIService {
   async getAllBudget() {
     try {
       const response = await axios.get(`${this.baseURL}/budget`);
+      console.log(response.data);
       return response.data;
     } catch (error) {
       console.log(`Error: Could not get all budget lines`);

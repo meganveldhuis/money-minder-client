@@ -7,6 +7,7 @@ function SummaryCardList({
   filters,
   highlightedItem = { title: "" },
   reloadData,
+  numberOfYearsRecorded,
 }) {
   const [data, setData] = useState([]);
 
@@ -29,9 +30,9 @@ function SummaryCardList({
         budgetAmount: budget ? Number(budget.amount) : 0,
       };
     });
-    console.log("merged data: ", mergedData);
     setData(mergedData);
   }
+
   useEffect(() => {
     getData();
   }, [filters, reloadData]);
@@ -43,6 +44,8 @@ function SummaryCardList({
           <SummaryCard
             key={index}
             cardData={record}
+            filters={filters}
+            numberOfYearsRecorded={numberOfYearsRecorded}
             isHighlighted={highlightedItem.title === record.category_name}
           />
         ))

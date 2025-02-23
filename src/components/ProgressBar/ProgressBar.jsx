@@ -8,7 +8,7 @@ function ProgressBar({ actualAmt, budgetAmt }) {
     } else {
       setProgress(Math.floor((actualAmt / budgetAmt) * 100));
     }
-  }, []);
+  }, [actualAmt]);
 
   return (
     <div className="progress-bar">
@@ -16,7 +16,7 @@ function ProgressBar({ actualAmt, budgetAmt }) {
         className={`progress-bar__fill ${
           progress < 40
             ? "progress-bar__fill--green"
-            : progress < 70
+            : progress < 90
             ? "progress-bar__fill--orange"
             : "progress-bar__fill--red"
         }`}

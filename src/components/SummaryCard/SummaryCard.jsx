@@ -1,10 +1,21 @@
 import "./SummaryCard.scss";
 import ProgressBar from "../ProgressBar/ProgressBar";
 
-function SummaryCard({ cardData, isHighlighted }) {
+function SummaryCard({
+  cardData,
+  isHighlighted,
+  filters,
+  numberOfYearsRecorded,
+}) {
+  const multiplier = filters.monthFilter
+    ? 1
+    : filters.yearFilter
+    ? 12
+    : 12 * numberOfYearsRecorded;
+  console.log(multiplier, numberOfYearsRecorded);
   const difference =
     cardData.is_income === 0
-      ? cardData.budgetAmount - cardData.total
+      ? cardData.budgetAmount * multiplier - cardData.total
       : Number(cardData.total);
   const stringDifference =
     difference > 0 ? `+${difference.toFixed(2)}` : difference.toFixed(2);
@@ -27,7 +38,7 @@ function SummaryCard({ cardData, isHighlighted }) {
       </h2>
       <ProgressBar
         actualAmt={cardData.total}
-        budgetAmt={cardData.budgetAmount}
+        budgetAmt={cardData.budgetAmount * multiplier}
       />
       <div className="summary-card__bottom">
         <div className="summary-card__bottom-left">
@@ -38,7 +49,9 @@ function SummaryCard({ cardData, isHighlighted }) {
           <p className="summary-card__bottom-text">
             {cardData.is_income === 0 ? "budget" : "expected"}:
           </p>
-          <p className="summary-card__bottom-text">{cardData.budgetAmount}$ </p>
+          <p className="summary-card__bottom-text">
+            {cardData.budgetAmount * multiplier}${" "}
+          </p>
         </div>
       </div>
     </div>
