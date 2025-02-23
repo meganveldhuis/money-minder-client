@@ -3,7 +3,8 @@ import FilterList from "../../components/FilterList/FilterList";
 import { useState } from "react";
 import BudgetModal from "../../components/BudgetModal/BudgetModal";
 
-function BudgetPage({ reloadData }) {
+function BudgetPage() {
+  const [reloadData, setReloadData] = useState(true);
   const [filters, setFilters] = useState([]);
   const [isAddBudgetModalOpen, setIsAddBudgetModalOpen] = useState(false);
   function handleAddBudgetClick(e) {
@@ -27,6 +28,7 @@ function BudgetPage({ reloadData }) {
       {isAddBudgetModalOpen && (
         <BudgetModal
           reloadData={reloadData}
+          setReloadData={setReloadData}
           onClose={() => setIsAddBudgetModalOpen(false)}
         />
       )}

@@ -200,6 +200,11 @@ class APIService {
       );
     }
   }
+  async addBudgetAndCategory(newBudget) {
+    // try{
+    //   const response
+    // }
+  }
 
   /* ------------------------------- CURRENCIES ------------------------------- */
   async getAllCurrency() {

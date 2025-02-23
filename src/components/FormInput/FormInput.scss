@@ -55,8 +55,11 @@
     }
   }
   &__checkbox {
-    height: 80%;
+    height: 1rem;
     width: 0px;
+    @include tablet {
+      height: 1.5rem;
+    }
   }
 }
 .react-datepicker__view-calendar-icon input {

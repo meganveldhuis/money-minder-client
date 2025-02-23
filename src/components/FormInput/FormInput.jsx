@@ -86,8 +86,8 @@ function FormInput({
         <input
           className="form__checkbox"
           type="checkbox"
-          id="isTrip"
-          name="isTrip"
+          id={id}
+          name={id}
           onChange={handleInputChange}
           checked={inputFormResponse}
         ></input>

@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import APIService from "../../services/APIService";
 import "./BudgetModal.scss";
+import FormInput from "../FormInput/FormInput";
 
-function AddBudgetModal({ onClose, reloadData }) {
+function AddBudgetModal({ onClose, reloadData, setReloadData }) {
   const [errors, setErrors] = useState({});
-  // const [categories, setCategories] = useState([]);
   const [formResponse, setFormResponse] = useState({
     note: "",
     amount: 0,
@@ -14,30 +14,25 @@ function AddBudgetModal({ onClose, reloadData }) {
     is_per_year: false,
   });
 
-  // useEffect(() => {
-  //   async function getCategories() {
-  //     const data = await APIService.getAllCategories();
-  //     if (data) {
-  //       setCategories(data);
-  //     }
-  //   }
-
-  //   getCategories();
-  // }, []);
   function handleOverlayClick(e) {
-    if (e.target.className === "add-budget-modal-overlay") {
+    if (e.target.className === "budget-modal-overlay") {
       onClose();
     }
   }
   function validateForm() {
     const newErrors = {};
     if (!formResponse.amount) newErrors.amount = "Budget Amount is required";
+    if (!formResponse.category_name)
+      newErrors.category_name = "Category Name is required";
+    if (!formResponse.description)
+      newErrors.description = "Category Description is required";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   }
 
   function handleInputChange(e) {
     const { name, value, type, checked } = e.target;
+    console.log(`${name} pressed as ${value} ${checked} : ${type}`);
     setFormResponse((prevState) => {
       return {
         ...prevState,
@@ -60,19 +55,20 @@ function AddBudgetModal({ onClose, reloadData }) {
     e.preventDefault();
     if (!validateForm()) return;
     let response = [];
-    if (isEditing) {
-      if (isIncome) {
-        response = await APIService.editIncome(formResponse, id);
-      } else {
-        response = await APIService.editExpense(formResponse, id);
-      }
-    } else {
-      if (isIncome) {
-        response = await APIService.postIncome(formResponse);
-      } else {
-        response = await APIService.postExpense(formResponse);
-      }
-    }
+    response = await APIService.addBudgetAndCategory(formResponse);
+    // if (isEditing) {
+    //   if (isIncome) {
+    //     response = await APIService.editIncome(formResponse, id);
+    //   } else {
+    //     response = await APIService.editExpense(formResponse, id);
+    //   }
+    // } else {
+    // if (isIncome) {
+    //   response = await APIService.postIncome(formResponse);
+    // } else {
+    //   response = await APIService.postExpense(formResponse);
+    // }
+    // }
     if (response) {
       setReloadData((prev) => !prev);
       onClose();
@@ -80,49 +76,74 @@ function AddBudgetModal({ onClose, reloadData }) {
   }
   return (
     <div
-      className="add-budget-modal-overlay"
+      className="budget-modal-overlay"
       onClick={(e) => handleOverlayClick(e)}
     >
-      <section className="add-budget-modal">
-        <h2 className="add-budget-modal__title">Add New Budget Line</h2>
-        <form className="form">
-          {/* note: "",
-            amount: 0,
-            category_name: "",
-            description: "",
-            is_income: false,
-            is_per_year: false, */}
-          <div className="form__item">
-            <label className="form__label" htmlFor="amount">
-              Amount
-            </label>
-            <input
-              className="form__input"
+      <div className="budget-modal">
+        <h2 className="budget-modal__title">Add New Budget Line</h2>
+        <form className="budget-form">
+          <section className="form__section">
+            <h3 className="form__section-header">Budget Info</h3>
+            <FormInput
+              label="Budget Note"
+              id="note"
+              type="text"
+              inputFormResponse={formResponse.note}
+              errors={errors}
+              setFormResponse={setFormResponse}
+              handleInputChange={handleInputChange}
+            />
+            <FormInput
+              label="amount *"
               id="amount"
-              name="amount"
               type="number"
-              onChange={(e) => handleInputChange(e)}
-              value={formResponse.amount}
-            ></input>
-            {errors.amount && (
-              <div className="error__container">
-                <img className="error__icon" src={errorIcon} alt="Error" />
-                <p className="error__text">{errors.amount}</p>
-              </div>
-            )}
-          </div>
-          <div className="form__item">
-            <label className="form__label" htmlFor="category_id">
-              Category
-            </label>
-            <input type="text"></input>
-            {errors.category_id && (
-              <div className="error__container">
-                <img className="error__icon" src={errorIcon} alt="Error" />
-                <p className="error__text">{errors.category_id}</p>
-              </div>
-            )}
-          </div>
+              inputFormResponse={formResponse.amount}
+              errors={errors}
+              setFormResponse={setFormResponse}
+              handleInputChange={handleInputChange}
+            />
+            <FormInput
+              modifier="row"
+              label="Is Per Year? (WIP)"
+              id="is_per_year"
+              type="checkbox"
+              inputFormResponse={formResponse.is_per_year}
+              errors={errors}
+              setFormResponse={setFormResponse}
+              handleInputChange={handleInputChange}
+            />
+          </section>
+          <section className="form__section">
+            <h3 className="form__section-header">Category Info</h3>
+            <FormInput
+              label="category *"
+              id="category_name"
+              type="text"
+              inputFormResponse={formResponse.category_name}
+              errors={errors}
+              setFormResponse={setFormResponse}
+              handleInputChange={handleInputChange}
+            />
+            <FormInput
+              label="category Description *"
+              id="description"
+              type="text"
+              inputFormResponse={formResponse.description}
+              errors={errors}
+              setFormResponse={setFormResponse}
+              handleInputChange={handleInputChange}
+            />
+            <FormInput
+              modifier="row"
+              label="Income Category?"
+              id="is_income"
+              type="checkbox"
+              inputFormResponse={formResponse.is_income}
+              errors={errors}
+              setFormResponse={setFormResponse}
+              handleInputChange={handleInputChange}
+            />
+          </section>
         </form>
         <div className="form__btns">
           <button
@@ -140,7 +161,7 @@ function AddBudgetModal({ onClose, reloadData }) {
             Add Budget Line
           </button>
         </div>
-      </section>
+      </div>
     </div>
   );
 }
