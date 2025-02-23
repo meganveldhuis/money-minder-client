@@ -1,5 +1,6 @@
 @use "../../styles/partials/mixins.scss" as *;
 @use "../../styles/partials/variables.scss" as *;
+
 .entry-modal-overlay {
   display: flex;
   justify-content: center;
@@ -41,74 +42,12 @@
 }
 
 .form {
-  // height: 30rem;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
   position: relative;
-  // @include desktop {
-  //   height: 32rem;
-  // }
-  &__row {
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
-    width: 100%;
-    flex-wrap: wrap;
-  }
-  &__item {
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-    flex: 1;
-    &--row {
-      flex-direction: row;
-      align-items: center;
-    }
-    &--tablet {
-      display: none;
-    }
-    @include tablet {
-      &--mobile {
-        display: none;
-      }
-      &--tablet {
-        display: flex;
-      }
-    }
-    &--hidden {
-      visibility: hidden;
-    }
-    &--more-width {
-      flex: 2;
-      width: 100%;
-    }
-  }
-  &__input,
-  &__checkbox {
-    background-color: $color-darker-blue;
-    color: inherit;
-    border: 1px solid $color-text;
-    border-radius: $border-radius-inputs;
-    // height: 2rem;
-    min-width: 4.4rem;
-    padding: 0.3rem;
-    cursor: pointer;
-    &:hover {
-      background-color: rgba($color-dark-purple, 0.8);
-      transition: ease-in 0.2s;
-    }
-    &--selected {
-      background-color: rgba($color-dark-purple, 0.8);
-    }
-  }
-  &__checkbox {
-    height: 80%;
-    width: 0px;
-  }
+
   &__btns {
-    // position: absolute;
-    // bottom: 0px;
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -141,25 +80,6 @@
     @include tablet {
       flex: 1;
     }
-  }
-}
-.react-datepicker__view-calendar-icon input {
-  padding: 6px 10px 5px 30px;
-  width: 100%;
-  min-width: 8.875rem;
-}
-
-.error {
-  &__container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 0.25rem;
-    color: $color-dark-red;
-  }
-  &__icon {
-    width: 16px;
-    height: 16px;
   }
 }
 

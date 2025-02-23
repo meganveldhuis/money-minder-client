@@ -274,60 +274,31 @@ function ModalForm({ onClose, setReloadData, isEditing = false }) {
               handleInputChange={handleInputChange}
               options={categories}
             />
-
-            <div
-              className={`form__item form__item--row ${
-                isIncome ? "form__item--hidden" : ""
-              }`}
-            >
-              <label className="form__label" htmlFor="isTrip">
-                Trip Expense?
-              </label>
-              <input
-                className="form__checkbox"
-                type="checkbox"
+            {!isIncome && (
+              <FormInput
+                modifier="row"
+                label="Trip Expense ?"
                 id="isTrip"
-                name="isTrip"
-                onChange={(e) => handleInputChange(e)}
-                checked={formResponse.isTrip}
-              ></input>
-              {errors.isTrip && (
-                <div className="error__container">
-                  <img className="error__icon" src={errorIcon} alt="Error" />
-                  <p className="error__text">{errors.isTrip}</p>
-                </div>
-              )}
-            </div>
+                type="checkbox"
+                inputFormResponse={formResponse.isTrip}
+                errors={errors}
+                setFormResponse={setFormResponse}
+                handleInputChange={handleInputChange}
+              />
+            )}
+
             {formResponse.isTrip && (
-              <div
-                className={`form__item form__item--row ${
-                  isIncome && "form__item--hidden"
-                }`}
-              >
-                <label className="form__label" htmlFor="trip_id">
-                  Trip Name
-                </label>
-                <select
-                  className="form__input"
-                  id="trip_id"
-                  name="trip_id"
-                  onChange={(e) => handleInputChange(e)}
-                  value={formResponse.trip_id}
-                >
-                  <option value=""> -- select an option -- </option>
-                  {trips.map((trip) => (
-                    <option key={trip.id} value={trip.id}>
-                      {trip.trip_name}
-                    </option>
-                  ))}
-                </select>
-                {errors.trip_id && (
-                  <div className="error__container">
-                    <img className="error__icon" src={errorIcon} alt="Error" />
-                    <p className="error__text">{errors.trip_id}</p>
-                  </div>
-                )}
-              </div>
+              <FormInput
+                modifier="row"
+                label="Trip Name"
+                id="trip_id"
+                type="select"
+                inputFormResponse={formResponse.trip_id}
+                errors={errors}
+                setFormResponse={setFormResponse}
+                handleInputChange={handleInputChange}
+                options={trips}
+              />
             )}
 
             <div className="form__btns">

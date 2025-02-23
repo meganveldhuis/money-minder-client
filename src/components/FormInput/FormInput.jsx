@@ -1,3 +1,4 @@
+import "./FormInput.scss";
 import DatePicker from "react-datepicker";
 import errorIcon from "../../assets/icons/error.svg";
 
@@ -58,10 +59,17 @@ function FormInput({
               --Select Category--
             </option>
           )}
+          {id === "trip_id" && (
+            <option value=""> -- select an option -- </option>
+          )}
 
           {options.map((option) => (
             <option key={option.id} value={option.id}>
-              {option.code ? option.code : option.category_name}
+              {option.code
+                ? option.code
+                : option.category_name
+                ? option.category_name
+                : option.trip_name}
             </option>
           ))}
         </select>
@@ -73,6 +81,15 @@ function FormInput({
           type="text"
           onChange={handleInputChange}
           value={inputFormResponse}
+        ></input>
+      ) : type === "checkbox" ? (
+        <input
+          className="form__checkbox"
+          type="checkbox"
+          id="isTrip"
+          name="isTrip"
+          onChange={handleInputChange}
+          checked={inputFormResponse}
         ></input>
       ) : (
         <></>
