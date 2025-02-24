@@ -13,6 +13,7 @@ function FilterList({
   includeSearch = true,
   includeCategory = true,
   setNumberOfYearsRecorded = () => {},
+  includeHandyBtns = false,
 }) {
   const [categories, setCategories] = useState([]);
   const [years, setYears] = useState([]);
@@ -92,6 +93,38 @@ function FilterList({
     });
   }
 
+  function handleButtonClick(e) {
+    e.preventDefault();
+    if (e.target.name === "thisYear") {
+      setFilters({
+        yearFilter: new Date().getFullYear(),
+        monthFilter: "",
+        categoryFilter: filters.categoryFilter,
+        search: filters.search,
+      });
+    } else if (e.target.name === "lastMonth") {
+      const lastMonth =
+        new Date().getMonth() === 0 ? 12 : new Date().getMonth() - 1;
+      const year =
+        new Date().getMonth() === 0
+          ? new Date().getFullYear() - 1
+          : new Date().getFullYear();
+      setFilters({
+        yearFilter: year,
+        monthFilter: lastMonth,
+        categoryFilter: filters.categoryFilter,
+        search: filters.search,
+      });
+    } else if (e.target.name === "thisMonth") {
+      setFilters({
+        yearFilter: new Date().getFullYear(),
+        monthFilter: new Date().getMonth(),
+        categoryFilter: filters.categoryFilter,
+        search: filters.search,
+      });
+    }
+  }
+
   return (
     <>
       <form className="filter">
@@ -142,6 +175,29 @@ function FilterList({
             </div>
           </div>
         )}
+        <div className="filter__buttons">
+          <button
+            className="filter__btn"
+            onClick={handleButtonClick}
+            name="thisYear"
+          >
+            This Year
+          </button>
+          <button
+            className="filter__btn"
+            onClick={handleButtonClick}
+            name="lastMonth"
+          >
+            Last Month
+          </button>
+          <button
+            className="filter__btn"
+            onClick={handleButtonClick}
+            name="thisMonth"
+          >
+            This Month
+          </button>
+        </div>
       </form>
     </>
   );

@@ -17,7 +17,8 @@
     gap: 0.3rem;
     width: 100%;
   }
-  &__bottom {
+  &__bottom,
+  &__buttons {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -25,7 +26,21 @@
     gap: 0.3rem;
     width: 100%;
   }
-
+  &__buttons {
+    margin: 1rem;
+  }
+  &__btn {
+    border: none;
+    border-radius: $border-radius-inputs + 2rem;
+    padding: 0.6rem;
+    background-color: $color-dark-orange;
+    &:hover {
+      filter: hue-rotate(25deg);
+      filter: brightness(90%);
+      transition: ease-in-out 0.25s;
+      box-shadow: 1px 1px 0.625rem $color-black;
+    }
+  }
   &__item {
     position: relative;
     color: $color-text;

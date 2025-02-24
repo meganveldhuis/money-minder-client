@@ -6,8 +6,8 @@ import PieChart from "../../components/PieChart/PieChart.jsx";
 
 function SummaryPage({ reloadData }) {
   const [filters, setFilters] = useState({
-    yearFilter: "",
-    monthFilter: "",
+    yearFilter: new Date().getFullYear(),
+    monthFilter: new Date().getMonth(),
     categoryFilter: "",
   });
   const [highlightedItem, setHighlightedItem] = useState(null);
@@ -24,6 +24,7 @@ function SummaryPage({ reloadData }) {
           setFilters={setFilters}
           includeSearch={false}
           includeCategory={false}
+          includeHandyBtns={true}
         />
       </div>
       <h2 className="summary__expenses-header">Expenses To Date</h2>
