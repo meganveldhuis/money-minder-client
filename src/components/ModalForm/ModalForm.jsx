@@ -137,7 +137,6 @@ function ModalForm({ onClose, setReloadData, isEditing = false }) {
       }
     }
     if (name === "amount") {
-      console.log(`${name} pressed and inputted at ${Number(value)}`);
       if (Number(value) > 0) {
         if (errors.amount) {
           setErrors((prev) => {

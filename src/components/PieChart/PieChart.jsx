@@ -79,6 +79,7 @@ function SumPieChart({
             label={item.label}
             setPieHighlightedItem={setPieHighlightedItem}
             pieHighlightedItem={pieHighlightedItem}
+            anyHighlighted={highlightedItem ? true : false}
             isHighlighted={item.label === highlightedItem.title}
             dataIndex={index}
           />

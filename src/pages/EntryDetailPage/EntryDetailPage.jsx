@@ -45,11 +45,9 @@ function EntryDetailPage() {
       const responseData = pathname.includes("/income")
         ? await APIService.getSingleIncome(id)
         : await APIService.getSingleExpense(id);
-      console.log(responseData);
       setData(responseData);
     }
     getRecord();
-    console.log(data);
   }, [reloadData]);
 
   return (

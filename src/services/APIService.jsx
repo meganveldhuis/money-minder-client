@@ -9,7 +9,6 @@ class APIService {
       const response = await axios.get(
         `${this.baseURL}/photo/?search=${searchTerm}`
       );
-      console.log("in api call: ", response);
       return response.data;
     } catch (error) {
       console.log(`Error getting photo with search ${searchTerm}`);

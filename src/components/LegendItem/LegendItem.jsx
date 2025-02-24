@@ -1,3 +1,5 @@
+import "./LegendItem.scss";
+
 function LegendItem({
   color,
   label,
@@ -5,6 +7,7 @@ function LegendItem({
   isHighlighted,
   setPieHighlightedItem,
   pieHighlightedItem,
+  anyHighlighted,
 }) {
   function onTouch() {
     if (pieHighlightedItem && pieHighlightedItem.dataIndex === dataIndex) {
@@ -19,7 +22,9 @@ function LegendItem({
   return (
     <div
       className={`pie-chart-legend__item ${
-        isHighlighted
+        !anyHighlighted
+          ? ""
+          : isHighlighted
           ? "pie-chart-legend__item--focus"
           : "pie-chart-legend__item--unfocused"
       }`}

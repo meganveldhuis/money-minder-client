@@ -30,19 +30,4 @@
       }
     }
   }
-  &-legend__item {
-    display: flex;
-    gap: 0.2rem;
-    align-items: center;
-    cursor: pointer;
-    &--focus {
-      color: $color-text;
-    }
-    &--unfocused {
-      color: $color-black;
-    }
-  }
-  &-legend__label {
-    font-weight: $font-weight-regular;
-  }
 }

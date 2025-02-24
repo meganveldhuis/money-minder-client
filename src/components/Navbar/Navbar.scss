@@ -6,7 +6,7 @@
   z-index: 10;
   position: fixed;
   top: 0;
-  background-color: $color-dark-blue;
+  background-color: $color-background;
   height: 2rem;
   @include tablet {
     position: static;
