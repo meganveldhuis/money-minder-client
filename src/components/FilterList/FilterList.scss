@@ -28,6 +28,8 @@
   }
   &__buttons {
     margin: 1rem;
+    justify-content: flex-start;
+    gap: 0.6rem;
   }
   &__btn {
     border: none;
