@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react";
 import { useParams, useLocation } from "react-router-dom";
 import "./ModalForm.scss";
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import APIService from "../../services/APIService";
-import errorIcon from "../../assets/icons/error.svg";
 import FormInput from "../FormInput/FormInput";
 
 function ModalForm({ onClose, setReloadData, isEditing = false }) {

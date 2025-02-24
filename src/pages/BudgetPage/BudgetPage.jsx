@@ -5,7 +5,6 @@ import BudgetCardList from "../../components/BudgetCardList/BudgetCardList";
 
 function BudgetPage() {
   const [reloadData, setReloadData] = useState(true);
-  const [filters, setFilters] = useState([]);
   const [isAddBudgetModalOpen, setIsAddBudgetModalOpen] = useState(false);
   function handleAddBudgetClick(e) {
     e.preventDefault();
@@ -17,7 +16,7 @@ function BudgetPage() {
       <button onClick={handleAddBudgetClick} className="budget-page__btn">
         Add Budget
       </button>
-      <BudgetCardList filters={filters} reloadData={reloadData} />
+      <BudgetCardList reloadData={reloadData} />
       {isAddBudgetModalOpen && (
         <BudgetModal
           reloadData={reloadData}

@@ -12,7 +12,7 @@ function FilterList({
   filters,
   includeSearch = true,
   includeCategory = true,
-  setNumberOfYearsRecorded,
+  setNumberOfYearsRecorded = () => {},
 }) {
   const [categories, setCategories] = useState([]);
   const [years, setYears] = useState([]);
@@ -122,7 +122,7 @@ function FilterList({
           )}
         </div>
 
-        {includeSearch ? (
+        {includeSearch && (
           <div className="filter__bottom">
             <div className="filter__item filter__item--row">
               <input
@@ -141,8 +141,6 @@ function FilterList({
               <img className="icon" src={cancelIcon} />
             </div>
           </div>
-        ) : (
-          <></>
         )}
       </form>
     </>

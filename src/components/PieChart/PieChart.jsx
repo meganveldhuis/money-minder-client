@@ -102,7 +102,7 @@ function SumPieChart({
             highlightScope: { highlight: "item", fade: "global" },
           },
         ]}
-        highlightedItem={pieHighlightedItem} // { dataIndex: 2, seriesId: "summary" }
+        highlightedItem={pieHighlightedItem}
         onHighlightChange={setPieHighlightedItem}
         sx={{
           [`& .${pieArcLabelClasses.root}`]: {

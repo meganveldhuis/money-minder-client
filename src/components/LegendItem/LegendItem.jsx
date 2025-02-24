@@ -7,7 +7,6 @@ function LegendItem({
   pieHighlightedItem,
 }) {
   function onTouch() {
-    console.log("pieHighlightedItem: ", pieHighlightedItem);
     if (pieHighlightedItem && pieHighlightedItem.dataIndex === dataIndex) {
       setPieHighlightedItem(null);
     } else {

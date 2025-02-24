@@ -1,11 +1,7 @@
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/variables" as *;
-.expenses-page {
-}
 
 .expenses {
-  &__header {
-  }
   &__main-title {
     padding: 1rem 0;
   }

@@ -4,7 +4,7 @@ function FilterDropdown({ label, handleFilterSelect, filters, data }) {
   return (
     <div className="filter__item">
       <label htmlFor={filterKey}>Filter by {capitalizedLabel}</label>
-      {data ? (
+      {data && (
         <select
           className={`filter__select ${
             filters[filterKey] ? "filter__select--selected" : ""
@@ -32,8 +32,6 @@ function FilterDropdown({ label, handleFilterSelect, filters, data }) {
             </option>
           ))}
         </select>
-      ) : (
-        <></>
       )}
     </div>
   );

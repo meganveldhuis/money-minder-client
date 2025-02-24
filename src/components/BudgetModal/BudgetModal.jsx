@@ -32,7 +32,6 @@ function AddBudgetModal({ onClose, reloadData, setReloadData }) {
 
   function handleInputChange(e) {
     const { name, value, type, checked } = e.target;
-    console.log(`${name} pressed as ${value} ${checked} : ${type}`);
     setFormResponse((prevState) => {
       return {
         ...prevState,

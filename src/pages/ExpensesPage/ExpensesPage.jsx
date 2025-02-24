@@ -32,7 +32,6 @@ function ExpensesPage({ reloadData }) {
         filters={filters}
         reloadData={reloadData}
       />
-      {/* scrollable table cards */}
     </div>
   );
 }
