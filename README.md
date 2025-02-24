@@ -30,6 +30,25 @@ I've never found a budget app or spreadsheet that is perfect. I want the option 
 
 - Unsplash API for photo generation (https://unsplash.com/developers)
 
+### Set-Up
+
+#### Back-end server:
+
+- clone repo
+- download MySQL and create a database
+- add credentials to .env
+- run `npm i` to install dependencies
+- run `npm run migrate` to create tables within database
+- run `npm run seed` to add sample data to database
+- run `npm run dev` to start the server
+
+#### Front-end Website:
+
+- clone repo
+- add credentials to .env
+- run `npm i` to install dependencies
+- run `npm run dev` to start server
+
 ### Sitemap
 
 - _Overview/Summary Page_ : This page will have some different representations of the data. It will include a PI Chart, table, info cards, etc. Anything that gives an idea of budgeting progress at a glance.
@@ -76,7 +95,8 @@ Future Implementations:
 1. Expenses Routes (`http:localhost:8080/api/expense`)
 
 - `get` all expense records
-- `get` expense by id
+- `get` summary of all expenses by category (`/api/expense/category`)
+- `get` an expense by id
 - `post` new expense record
 - `patch` edit expense record
 - `delete` expense record
@@ -85,30 +105,43 @@ Future Implementations:
 
 - `get` all income records
 - `get` income by id
+- `get` summary of all income by category (`/api/income/category`)
 - `post` new income record
 - `patch` edit income record
 - `delete` income record
 
-3. Categories Routes (`http:localhost:8080/api/category`)
+3. Categories Routes (`http:localhost:8080/api/categories`)
 
-- `get` all Expense categories
-- `get` all Income categories
-- `get` category by id
-- `post` new category
-- `delete` category
+- `get` all Expense categories (`/api/categories/expense`)
+- `get` all Income categories (`/api/categories/income`)
+- `get` category by id (`/api/categories/:id`)
+<!-- - `post` new category
+- `delete` category -->
 
 4. Budget Routes (`http:localhost:8080/api/budget`)
 
 - `get` all budget lines
-- `post` new budget line
-- `patch` edit budget line
-- `delete` budget line
+- `put` new budget line and new category (`http:localhost:8080/api/budget/category`)
+- `get` a budget by category id
+<!-- - `patch` edit budget line
+- `delete` budget line -->
 
 5. Currency Routes (`http:localhost:8080/api/currency`)
 
 - `get` all currency codes
 
-6. Trips Routes
+6. Date Routes (`http:localhost:8080/api/date`)
+
+- `get` all years that exist in the income and expense records
+
+7. Trips Routes (`http:localhost:8080/api/trips`)
+
+- `get` all trips
+- `get` trip by id
+
+8. Photo Routes (`http:localhost:8080/api/photo`)
+
+- `get` a photo based on a searchTerm (using Unsplash API)
 
 ## Roadmap
 
