@@ -1,35 +1,12 @@
 # Budget App
 
-<!--
-QUESTION:
-
-- is it okay practice on the back-end to use a different route/endpoint to get info?
-  (re: validate category id exists)
-
-  - yes! can use a utils folder
-
-- is it best practice to use IDs or names when referencing a different table in a request body?
-
-  - IDs is good
-
-- if i make a class on frontend for API service, is it best to have then three try/catch blocks?
-  - just two is good -->
-
 ## Overview
 
-What is your app? Give a brief description in a couple of sentences.
+Budgeting app: for expense tracking, comparing budget to actual amounts, and tracking income.
 
 ### Problem Space
 
 I've never found a budget app or spreadsheet that is perfect. I want the option to add expenses offline, have separate trip expenses, and currencies.
-
-### User Profile
-
-- Users who are looking for a place to budget and track cash.
-
-### Features
-
-List the functionality that your app will include. These can be written as user stories or descriptions with related details. Do not describe _how_ these features are implemented, only _what_ needs to be implemented.
 
 ## Implementation
 
@@ -51,7 +28,7 @@ List the functionality that your app will include. These can be written as user 
 
 ### APIs
 
-No external APIs are used.
+- Unsplash API for photo generation (https://unsplash.com/developers)
 
 ### Sitemap
 
@@ -60,8 +37,12 @@ No external APIs are used.
 - _Expenses Page_ : Table of all expense items. Filters at the top for year, month, category, etc.
 - _Income Page_ : Table of all income items. Filters at the top for year, month, category, etc.
 - _Budget Page_ : View and edit all budget items
-- _Record Information Page_ : after clicking on an expense or income line, this page will open up with more info and the option to edit the record
+- _Record Details Page_ : after clicking on an expense or income line, this page will open up with more info and the option to edit the record
+
+Future Implementations:
+
 - _Settings Page_: Page to put the ugly stuff: to download data to csv file, dark/light themes, editing or adding categories, etc.
+- _Goals_ : Add expense / budget goals and track progress
 
 ### Mockups
 
@@ -138,46 +119,50 @@ _Goal: done by Feb 14th_
 - [x] set up all tables
 - [x] seed initial data
 - [x] set up all base routes/endpoints
-- [ ] test they all work as expected
+- [x] test they all work as expected
 
 ### Front-End
 
 (MVP)
 
-- [ ] Functionality: _Goal: done by Feb 18th_
+- [x] Functionality: _Goal: done by Feb 18th_
   - [x] API service class
   - [x] Summary/Overview Page
   - [x] Income Page
   - [x] Expense Page
-  - [ ] Add Entry Page/SideBar
-- [ ] Styling: _Goal: done by Saturday Feb 20th_
+  - [x] Add Entry Page/SideBar
+- [x] Styling: _Goal: done by Saturday Feb 20th_
   - [x] Summary/Overview Page
-  - [ ] Income Page
-  - [ ] Expense Page
-  - [ ] Add Entry Page/SideBar
+  - [x] Income Page
+  - [x] Expense Page
+  - [x] Add Entry Page/SideBar
 
 ### Testing
 
 _Goal: done by Sunday Feb 23th_
 
-- [ ] Test all pages, endpoints, situations
-- [ ] Clean up code
+- [x] Test all pages, endpoints, situations
+- [x] Clean up code
 
 ### Add Other Features
 
-- [ ] Budget Page
-  - [ ] add / edit budget item
-  - [ ] change overview/summary to reflect progress vs the budget
+- [x] Budget Page
+  - [x] add budget item
+  - [ ] edit budget item
+  - [x] change overview/summary to reflect progress vs the budget
+- [ ] Additional features for Form:
+  - [ ] User chooses icons for categories
+  - [ ] User chooses colours for categories
 - [ ] Schedule monthly payments
-- [ ] Icons for categories
 - [ ] Animations
-- [ ] Component Reusability
+- [x] Component Reusability
 
 ---
 
 ## Future Implementations
 
 - Login / Multiple users
-- Option to upload data
+- Option to upload and download data
 - Trips Tab / Separate expenses and budget
-- Build out Currency (currently will just have default and only option as CAD)
+- Build out Currency (currently has CAD as default throughout the app)
+- Goals Page : track and set budget goals

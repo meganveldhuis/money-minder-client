@@ -14,7 +14,7 @@ function BudgetPage() {
   return (
     <div className="page-content budget-page">
       <button onClick={handleAddBudgetClick} className="budget-page__btn">
-        Add Budget
+        Add New Budget and Category
       </button>
       <BudgetCardList reloadData={reloadData} />
       {isAddBudgetModalOpen && (
