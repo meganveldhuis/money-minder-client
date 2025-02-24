@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./ProgressBar.scss";
-function ProgressBar({ actualAmt, budgetAmt }) {
+
+function ProgressBar({ actualAmt, budgetAmt, filters }) {
   const [progress, setProgress] = useState(0);
   useEffect(() => {
     if (actualAmt / budgetAmt > 1) {
@@ -8,7 +9,7 @@ function ProgressBar({ actualAmt, budgetAmt }) {
     } else {
       setProgress(Math.floor((actualAmt / budgetAmt) * 100));
     }
-  }, [actualAmt]);
+  }, [actualAmt, filters]);
 
   return (
     <div className="progress-bar">

@@ -14,12 +14,15 @@ function SumPieChart({
   const [data, setData] = useState([]);
   const TOTAL = data.map((item) => item.value).reduce((a, b) => a + b, 0);
   const colors = [
-    "#6D597A",
-    "#915F78",
-    "#B56576",
-    "#CD6873",
-    "#E56B6F",
-    "#EAAC8B",
+    "#3EBDE4",
+    "#E29578",
+    "#83C5BE",
+    "#F1B9A5",
+    "#42999B",
+    "#FFDDD2",
+    "#B8DEDC",
+    "#F6EAE6",
+    "#EDF6F9",
   ];
   const sizing = {
     margin: { right: 5 },
@@ -40,7 +43,6 @@ function SumPieChart({
           color: colors[index],
         };
       });
-      console.log("parsedData", parsedData);
       setData(parsedData);
     } else {
       setData([]);
@@ -63,12 +65,6 @@ function SumPieChart({
     const percent = params.value / TOTAL;
     return `${params.title}: ${(percent * 100).toFixed(0)}%`;
   };
-
-  function handleClick(d) {
-    // setHighLightedItem(data[d.dataIndex]);
-    console.log(data[d.dataIndex]);
-    console.log(d);
-  }
 
   return (
     <section className="pie-chart">
@@ -108,7 +104,6 @@ function SumPieChart({
         ]}
         highlightedItem={pieHighlightedItem} // { dataIndex: 2, seriesId: "summary" }
         onHighlightChange={setPieHighlightedItem}
-        onItemClick={(event, d) => handleClick(d)}
         sx={{
           [`& .${pieArcLabelClasses.root}`]: {
             fill: "white",

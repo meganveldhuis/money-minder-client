@@ -12,7 +12,6 @@ function SummaryCard({
     : filters.yearFilter
     ? 12
     : 12 * numberOfYearsRecorded;
-  console.log(multiplier, numberOfYearsRecorded);
   const difference =
     cardData.is_income === 0
       ? cardData.budgetAmount * multiplier - cardData.total
@@ -39,6 +38,7 @@ function SummaryCard({
       <ProgressBar
         actualAmt={cardData.total}
         budgetAmt={cardData.budgetAmount * multiplier}
+        filters={filters}
       />
       <div className="summary-card__bottom">
         <div className="summary-card__bottom-left">
@@ -50,7 +50,7 @@ function SummaryCard({
             {cardData.is_income === 0 ? "budget" : "expected"}:
           </p>
           <p className="summary-card__bottom-text">
-            {cardData.budgetAmount * multiplier}${" "}
+            {cardData.budgetAmount * multiplier}$
           </p>
         </div>
       </div>
