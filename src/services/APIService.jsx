@@ -242,7 +242,7 @@ class APIService {
   /* --------------------------------- GEMINI --------------------------------- */
   async getAIOverview(data) {
     try {
-      const searchTerm = `With the following data, tell me how to optimize my budget in 400 words or less, and use headers, bolded terms, and bullet points (with markdown syntax) to make the important information pop : ${JSON.stringify(
+      const searchTerm = `With the following data, tell me how to optimize my budget in 400 words or less, and use headers, bolded terms, and bullet points (with markdown syntax) to make the important information pop. I am adding your response to my budgeting app, so no need to suggest tracking expenses or mention my budget app : ${JSON.stringify(
         data
       )}`;
       const searchBody = {
