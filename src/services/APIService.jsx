@@ -254,6 +254,20 @@ class APIService {
       console.log(`Error: Could not get AI Overview`);
     }
   }
+  async continueAIConversation(lastResponse, data, userQuestion) {
+    try {
+      const searchTerm = `My budget data is ${JSON.stringify(
+        data
+      )}, your last response was ${lastResponse}. My next Question is ${userQuestion}`;
+      const searchBody = {
+        search: searchTerm,
+      };
+      const response = await axios.post(`${this.baseURL}/gemini`, searchBody);
+      return response.data;
+    } catch (error) {
+      console.log(`Error: Could not get AI Overview`);
+    }
+  }
 }
 
 export default new APIService();
