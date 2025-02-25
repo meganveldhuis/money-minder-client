@@ -239,6 +239,21 @@ class APIService {
       console.log(`Error: Could not get trip with id ${trip_id}`);
     }
   }
+  /* --------------------------------- GEMINI --------------------------------- */
+  async getAIOverview(data) {
+    try {
+      const searchTerm = `With the following data, tell me how to optimize my budget in 400 words or less, and use headers, bolded terms, and bullet points (with markdown syntax) to make the important information pop : ${JSON.stringify(
+        data
+      )}`;
+      const searchBody = {
+        search: searchTerm,
+      };
+      const response = await axios.post(`${this.baseURL}/gemini`, searchBody);
+      return response.data;
+    } catch (error) {
+      console.log(`Error: Could not get AI Overview`);
+    }
+  }
 }
 
 export default new APIService();
