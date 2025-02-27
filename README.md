@@ -2,7 +2,7 @@
 
 ## Overview
 
-Budgeting app: for expense tracking, comparing budget to actual amounts, and tracking income.
+Budgeting app: for expense tracking, comparing budget to actual amounts, and tracking income. The backend for this repo can be found [here](https://github.com/meganveldhuis/moneyminder-api).
 
 ### Problem Space
 
@@ -22,13 +22,19 @@ I've never found a budget app or spreadsheet that is perfect. I want the option 
   - react-router
   - axios
   - react-router-dom
+  - MUI
 - Server libraries:
   - express
   - knex
+  - dotenv
+  - axios
+  - cors
+  - mysql2
+  - @google/generative-ai
 
 ### APIs
 
-- Unsplash API for photo generation (https://unsplash.com/developers)
+- [Unsplash API](https://unsplash.com/developers) for photo generation
 
 ### Set-Up
 
@@ -65,30 +71,25 @@ Future Implementations:
 
 ### Mockups
 
-#### Summary Page:
+Summary Page:
 
 ![mockup of summary page on mobile](./src/assets/images/mockup/mockup-mobile-summary.png)
 
-#### Expenses Page:
+Expenses Page: (similar for Income Page)
 
 ![mockup of expenses page on mobile](./src/assets/images/mockup/mockup-mobile-expenses.png)
 
-#### Income Page:
-
-![mockup of income page on mobile](./src/assets/images/mockup/mockup-mobile-income.png)
-
-#### Budget Page:
+Budget Page:
 
 ![mockup of budget page on mobile](./src/assets/images/mockup/mockup-mobile-budget.png)
 
-#### New Entry Page:
+New Entry Modal:
 
-![mockup of new expense entry page on mobile](./src/assets/images/mockup/mockup-mobile-expense-entry.png)
-![mockup of new income entry on mobile](./src/assets/images/mockup/mockup-mobile-income-entry.png)
+![mockup of new record entry page on mobile](./src/assets/images/mockup/mockup-mobile-new-entry.png)![alt text](image.png)
 
 ### Data
 
-![Diagram showing the SQL tables and their relationships](sql-diagram-no-user.png)
+![Diagram showing the SQL tables and their relationships](sql-diagram.png)
 
 ### Endpoints
 
@@ -199,3 +200,4 @@ _Goal: done by Sunday Feb 23th_
 - Trips Tab / Separate expenses and budget
 - Build out Currency (currently has CAD as default throughout the app)
 - Goals Page : track and set budget goals
+- Add more use to generative AI
