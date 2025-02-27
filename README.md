@@ -35,6 +35,7 @@ I've never found a budget app or spreadsheet that is perfect. I want the option 
 ### APIs
 
 - [Unsplash API](https://unsplash.com/developers) for photo generation
+- [Gemini API](https://ai.google.dev/gemini-api/docs) for generative AI
 
 ### Set-Up
 
@@ -72,20 +73,18 @@ Future Implementations:
 ### Mockups
 
 Summary Page:
-
-![mockup of summary page on mobile](./src/assets/images/mockup/mockup-mobile-summary.png)
+<img src="./src/assets/images/mockup/mockup-mobile-summary.png" width="250">
 
 Expenses Page: (similar for Income Page)
 
-![mockup of expenses page on mobile](./src/assets/images/mockup/mockup-mobile-expenses.png)
+<img src="./src/assets/images/mockup/mockup-mobile-expenses.png" width="250">
 
 Budget Page:
 
-![mockup of budget page on mobile](./src/assets/images/mockup/mockup-mobile-budget.png)
+<img src="./src/assets/images/mockup/mockup-mobile-budget.png" width="250">
 
 New Entry Modal:
-
-![mockup of new record entry page on mobile](./src/assets/images/mockup/mockup-mobile-new-entry.png)![alt text](image.png)
+<img src="./src/assets/images/mockup/mockup-mobile-new-entry.png" width="500">
 
 ### Data
 
